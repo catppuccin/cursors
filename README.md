@@ -5,9 +5,9 @@
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 <p align="center">
-    <a href="https://github.com/elkrien/cursors/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/catppuccin/cursors?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=1e1e28"></a>
-    <a href="https://github.com/elkrien/cursors/issues"><img src="https://img.shields.io/github/issues/catppuccin/cursors?colorA=1e1e28&colorB=f7be95&style=for-the-badge"></a>
-    <a href="https://github.com/elkrien/cursors/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/cursors?colorA=1e1e28&colorB=b1e1a6&style=for-the-badge"></a>
+    <a href="https://github.com/elkrien/cursors/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/elkrien/cursors?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=1e1e28"></a>
+    <a href="https://github.com/elkrien/cursors/issues"><img src="https://img.shields.io/github/issues/elkrien/cursors?colorA=1e1e28&colorB=f7be95&style=for-the-badge"></a>
+    <a href="https://github.com/elkrien/cursors/contributors"><img src="https://img.shields.io/github/contributors/elkrien/cursors?colorA=1e1e28&colorB=b1e1a6&style=for-the-badge"></a>
 </p>
 
 <p align="center">
