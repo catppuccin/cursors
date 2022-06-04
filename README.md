@@ -5,9 +5,9 @@
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 <p align="center">
-    <a href="https://github.com/catppuccin/cursors/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/catppuccin/cursors?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=1e1e28"></a>
-    <a href="https://github.com/catppuccin/cursors/issues"><img src="https://img.shields.io/github/issues/catppuccin/cursors?colorA=1e1e28&colorB=f7be95&style=for-the-badge"></a>
-    <a href="https://github.com/catppuccin/cursors/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/cursors?colorA=1e1e28&colorB=b1e1a6&style=for-the-badge"></a>
+    <a href="https://github.com/catppuccin/cursors/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/catppuccin/cursors?style=for-the-badge&logo=starship&color=B4BEFE&logoColor=CDD6F4&labelColor=313244"></a>
+    <a href="https://github.com/catppuccin/cursors/issues"><img src="https://img.shields.io/github/issues/catppuccin/cursors?colorA=313244&colorB=FAB387&style=for-the-badge"></a>
+    <a href="https://github.com/catppuccin/cursors/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/cursors?colorA=313244&colorB=A6E3A1&style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -16,7 +16,7 @@
 
 ## Info
 
-This project is just a modification of [Volantes Cursors](https://github.com/varlesh/volantes-cursors) with a Catppuccin palette.
+This project is just a modification of [Volantes Cursors](https://github.com/varlesh/volantes-cursors) with a Catppuccin palettes.
 
 ## Cursor sizes (pixels): 
 
@@ -32,12 +32,13 @@ This project is just a modification of [Volantes Cursors](https://github.com/var
     git clone https://github.com/catppuccin/cursors.git
     cd cursors
    ```
-
 2. Extract selected theme from `cursors` directory:
     - for local user to: `~/.icons`
     - for all users to: `/usr/share/icons/`
+      
+&nbsp;
+3. Choose theme in the Settings.
 
-3. Choose a theme in the Settings.
 
 ## Manual build from scratch
 
@@ -63,9 +64,11 @@ This project is just a modification of [Volantes Cursors](https://github.com/var
 ## 💝 Thanks to
 
 - [varlesh](https://github.com/varlesh/volantes-cursors)
+- [elkrien](https://github.com/elkrien)
 
 &nbsp;
+
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 <p align="center">Copyright &copy; 2021-present <a href="https://github.com/catppuccin" target="_blank">Catppuccin Org</a>
-<p align="center"><a href="https://github.com/catppuccin/cursors/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=GNU&logoColor=d9e0ee&colorA=1e1e28&colorB=c9cbff"/></a></p>
+<p align="center"><a href="https://github.com/catppuccin/cursors/blob/main/LICENSE"><img src="https://img.shields.io/static/v1.svg?style=for-the-badge&label=License&message=GNU&logoColor=CDD6F4&colorA=313244&colorB=B4BEFE"/></a></p>
 
