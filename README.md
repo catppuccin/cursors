@@ -5,7 +5,7 @@
 	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 <p align="center">
-    <a href="https://github.com/catppuccin/cursors/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/catppuccin/cursors?style=for-the-badge&logo=starship&color=B4BEFE&logoColor=CDD6F4&labelColor=313244"></a>
+    <a href="https://github.com/catppuccin/cursors/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/catppuccin/cursors?style=for-the-badge&color=B4BEFE&logoColor=CDD6F4&labelColor=313244"></a>
     <a href="https://github.com/catppuccin/cursors/issues"><img src="https://img.shields.io/github/issues/catppuccin/cursors?colorA=313244&colorB=FAB387&style=for-the-badge"></a>
     <a href="https://github.com/catppuccin/cursors/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/cursors?colorA=313244&colorB=A6E3A1&style=for-the-badge"></a>
 </p>
