@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/cursors/main/assets/catppuccin-cursors.png"/>
+  <img src="assets/catppuccin-cursors.png"/>
 </p>
 
 ## Info
@@ -37,7 +37,7 @@ This project is just a modification of [Volantes Cursors](https://github.com/var
     - for all users to: `/usr/share/icons/`
       
 &nbsp;
-3. Choose theme in the Settings.
+3. Choose theme in the Settings
 
 
 ## Manual build from scratch
@@ -58,7 +58,7 @@ This project is just a modification of [Volantes Cursors](https://github.com/var
     make build
     sudo make install
     ```
-4. Choose a theme in the Settings.
+4. Choose a theme in the Settings
 
 
 ## 💝 Thanks to
