@@ -35,7 +35,7 @@
 
 ## Info
 
-This project is just a modification of [Volantes Cursors](https://github.com/varlesh/volantes-cursors) with a Catppuccin palettes.
+This project is a modification of [Volantes Cursors](https://github.com/varlesh/volantes-cursors) with the Catppuccin palettes.
 
 ## Cursor sizes (pixels): 
 
