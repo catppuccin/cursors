@@ -58,6 +58,19 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
 &nbsp;
 3. Choose theme in the Settings
 
+### For Arch Linux users 
+
+- We have 4 individual packages which download GitHub release zips. Install them with you favourite AUR helper:
+
+  ```
+  yay -S catppuccin-cursors-mocha catppuccin-cursors-macchiato catppuccin-cursors-frappe catppuccin-cursors-latte
+  ```
+
+- There also exists a `-git` package which builds the cursors from source. This package builds the cursors for all 4 variants and can take a lot of time to build depending on your system.
+
+  ```
+  yay -S catppuccin-cursors-git
+  ```
 
 ## Manual build from scratch
 
