@@ -72,6 +72,14 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
   yay -S catppuccin-cursors-git
   ```
 
+### For Nix users
+- nixpkgs has a single nix package which downloads the GitHub release zips.
+- Use it by providing your preferred flavour + accent with the first letter in capital. Example:
+```nix
+pkgs.catppuccin-cursors.macchiatoPink
+```
+- It stores the cursor pack in `$out/share/icons/Catppuccin-<flavor>-<accent>-Cursors`, with the first letters of the flavor and accent in captial.
+
 ## Manual build from scratch
 
 1. Clone this repository and go to downloaded directory:
