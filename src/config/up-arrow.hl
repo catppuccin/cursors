@@ -1,0 +1,4 @@
+resize_algorithm = bilinear
+hotspot_x = 0.46875
+hotspot_y = 0.21875
+define_size = 64, up-arrow.svg
