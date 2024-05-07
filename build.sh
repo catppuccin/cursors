@@ -168,6 +168,6 @@ for theme_src_dir in "$SRC_DIR"/*; do
 		name = $theme_name
 		description = ${theme_comment#Comment=}
 		version = $(git show -s --format=%cd --date=format:%Y%m%d HEAD)
-		cursor_directory = hyprcursors
+		cursors_directory = hyprcursors
 	EOM
 done
