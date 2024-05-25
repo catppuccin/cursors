@@ -92,6 +92,7 @@ pkgs.catppuccin-cursors.macchiatoPink
     - make
     - inkscape
     - xcursorgen
+    - hyprcursor
 
 3. Run the following commands (be aware that building takes a lot of time):
     ```
