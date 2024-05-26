@@ -92,12 +92,16 @@ pkgs.catppuccin-cursors.macchiatoPink
     - make
     - inkscape
     - xcursorgen
-    - hyprcursor
+    - hyprcursor (if building hyprcursors)
 
 3. Run the following commands (be aware that building takes a lot of time):
     ```
     make build
     sudo make install
+    ```
+    If you want to build hyprcursors run the following command before installing:
+    ```
+    make build-hyprcursors
     ```
 4. Choose a theme in the Settings
 

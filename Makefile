@@ -6,6 +6,9 @@ all: build
 build:
 	bash build.sh
 
+build-hyprcursors:
+	bash build-hyprcursor.sh
+
 clean:
 	-rm -rf build/ dist/ *.tar.gz
 
@@ -35,4 +38,4 @@ $(CURSOR_THEMES):
 	cp -f AUTHORS LICENSE $@
 	tar -C $(dir $@) -czf $(notdir $@)_$(VERSION).tar.gz $(notdir $@)
 
-.PHONY: all build clean dist install uninstall _get_version release undo_release $(CURSOR_THEMES)
+.PHONY: all build build-hyprcursor clean dist install uninstall _get_version release undo_release $(CURSOR_THEMES)
