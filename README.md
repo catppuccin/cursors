@@ -41,7 +41,7 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
 
 ### GitHub Release
 
-1. Download your preferred flavor and accent from the [latest GitHub release](https://github.com/catppuccin/cursors/releases/latest).
+1. Download your preferred flavor and accent from the [latest GitHub release](https://github.com/catppuccin/cursors/releases/tag/v0.2.0).
 
 1. Extract the downloaded zip to one of the following locations:
 
@@ -49,6 +49,14 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
    - **For all users**: `/usr/share/icons`
 
 1. Choose the theme in your settings.
+
+#### Example Installation
+
+```sh
+cd $HOME/.icons # or `/usr/share/icons`
+curl -LOsS https://github.com/catppuccin/cursors/releases/download/v0.2.0/catppuccin-frappe-blue-cursors.zip
+unzip catppuccin-frappe-blue-cursors.zip
+```
 
 ### Arch Linux
 
@@ -72,7 +80,7 @@ yay -S catppuccin-cursors-git
 
 Nixpkgs has
 [catppuccin-cursors](https://github.com/NixOS/nixpkgs/tree/nixos-23.11/pkgs/data/icons/catppuccin-cursors).
-Use it by providing your preferred flavour + accent in camelCase. E.g.
+Use it by providing your preferred flavor + accent in camelCase. E.g.
 
 ```nix
 pkgs.catppuccin-cursors.mochaMauve
@@ -95,14 +103,14 @@ Requirements:
    cd cursors
    ```
 
-1. Run the following command(s) if you have just installed, if not then look inside
-   of the [justfile](./justfile) to understand what commands are being ran.
+1. Run the following command(s) if you have just installed, if not then look
+   inside the [justfile](./justfile) to understand what commands are being run.
 
    ```sh
    just flavor mocha # To build all variants under one single flavor.
    just accents mocha blue # To build only the blue variant under mocha.
    just accents mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
-   ``` 
+   ```
 
 ## 💝 Thanks to
 
