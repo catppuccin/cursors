@@ -99,6 +99,8 @@ pkgs.catppuccin-cursors.mochaMauve
 - [inkscape](https://wiki.inkscape.org/wiki/Inkscape) to convert SVGs to PNGs.
 - **(Optional)** [just](https://github.com/casey/just) to easily run development
   commands.
+- **(Optional)** [hyprcursor](https://github.com/hyprwm/hyprcursor) to build
+  hyprcursor theme
 
 ### Steps
 
@@ -111,10 +113,14 @@ pkgs.catppuccin-cursors.mochaMauve
 
 1. Run the following command(s) if you have just installed, if not then look
    inside the [justfile](./justfile) to understand what commands are being run.
+   All of the following support the `-h` flag to enable building of then
+   hyprcursor theme.
 
    ```bash
    just all # Build all flavor-accent variants.
+   just all -h # Build all flavor-accent variants with hyprcursor support
    just flavor mocha # To build all variants under one single flavor.
+   just flavor mocha -h # To build all variants under one single flavor with hyprcursor support
    just accents mocha blue # To build only the blue variant under mocha.
    just accents mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
    ```
