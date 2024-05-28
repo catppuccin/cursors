@@ -41,6 +41,8 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
 
 ### GitHub Release
 
+<!-- x-release-please-start-version -->
+
 1. Download your preferred flavor and accent from the [latest GitHub release](https://github.com/catppuccin/cursors/releases/tag/v0.2.0).
 
 1. Extract the downloaded zip to one of the following locations:
@@ -52,17 +54,19 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
 
 #### Example Installation
 
-```sh
+```bash
 cd $HOME/.icons # or `/usr/share/icons`
 curl -LOsS https://github.com/catppuccin/cursors/releases/download/v0.2.0/catppuccin-frappe-blue-cursors.zip
 unzip catppuccin-frappe-blue-cursors.zip
 ```
 
+<!-- x-release-please-end -->
+
 ### Arch Linux
 
 Individual flavor packages are available to download with your preferred AUR helper:
 
-```sh
+```bash
 yay -S catppuccin-cursors-latte
 yay -S catppuccin-cursors-frappe
 yay -S catppuccin-cursors-macchiato
@@ -72,7 +76,7 @@ yay -S catppuccin-cursors-mocha
 A `-git` package is also available which builds the cursors from source. This
 package contains all variants of flavor and accent.
 
-```sh
+```bash
 yay -S catppuccin-cursors-git
 ```
 
@@ -98,7 +102,7 @@ Requirements:
 
 1. Clone this repository and go to downloaded directory:
 
-   ```sh
+   ```bash
    git clone https://github.com/catppuccin/cursors.git
    cd cursors
    ```
@@ -106,7 +110,7 @@ Requirements:
 1. Run the following command(s) if you have just installed, if not then look
    inside the [justfile](./justfile) to understand what commands are being run.
 
-   ```sh
+   ```bash
    just flavor mocha # To build all variants under one single flavor.
    just accents mocha blue # To build only the blue variant under mocha.
    just accents mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
@@ -117,7 +121,7 @@ Requirements:
 - [varlesh](https://github.com/varlesh/volantes-cursors)
 - [elkrien](https://github.com/elkrien)
 
-&#160;
+&nbsp;
 
 <p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
 <p align="center">Copyright &copy; 2021-present <a href="https://github.com/catppuccin" target="_blank">Catppuccin Org</a>
