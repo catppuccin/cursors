@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: extractions/setup-just@v2
       - name: Install dependencies
-        run: sudo apt update && sudo apt install -y inkscape
+        run: sudo apt update && sudo apt install -y inkscape x11-apps
       - name: Generate cursors
         run: just all
       - name: Build zips
