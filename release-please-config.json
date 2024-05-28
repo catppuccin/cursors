@@ -1,0 +1,18 @@
+{
+  "last-release-sha": "31a284853779d1b179c2b8597f3c81c401e5ad1e",
+  "draft": true,
+  "packages": {
+    ".": {
+      "package-name": "",
+      "release-type": "simple",
+      "draft-pull-request": true,
+      "extra-files": [
+        { "type": "generic", "path": "README.md" }
+      ]
+    }
+  },
+  "changelog-sections": [
+    { "type": "build", "section": "Build system & distribution", "hidden": false }
+  ],
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
