@@ -3,9 +3,9 @@ _default:
 
 accents := "blue dark flamingo green lavender light maroon mauve peach pink red rosewater sapphire sky teal yellow"
 
-# Remove all files in the "./dist" folder and any ".tar.gz" files
+# Remove all files in the ".pngs/", "./dist" and "./releases" directories
 clean:
-  rm -rf pngs/ dist/ zips/
+  rm -rf pngs/ dist/ releases/
 
 # Zip all directories inside of "./dist"
 zip:
