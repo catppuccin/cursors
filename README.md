@@ -92,13 +92,15 @@ pkgs.catppuccin-cursors.mochaMauve
 
 ## Manual Installation
 
-Requirements:
+### Requirements
 
 - [xcursorgen](https://wiki.archlinux.org/title/Xcursorgen) to generate the
   cursors.
 - [inkscape](https://wiki.inkscape.org/wiki/Inkscape) to convert SVGs to PNGs.
 - **(Optional)** [just](https://github.com/casey/just) to easily run development
   commands.
+
+### Steps
 
 1. Clone this repository and go to downloaded directory:
 
