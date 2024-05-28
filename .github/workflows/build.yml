@@ -1,0 +1,23 @@
+name: build
+
+on:
+  pull_request:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: extractions/setup-just@v2
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y inkscape x11-apps
+      - name: Generate cursors
+        run: just all
+      - name: Build zips
+        run: just zip
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: '${{ github.sha }}-artifacts'
+          path: releases/*.zip
