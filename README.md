@@ -113,6 +113,7 @@ pkgs.catppuccin-cursors.mochaMauve
    inside the [justfile](./justfile) to understand what commands are being run.
 
    ```bash
+   just all # Build all flavor-accent variants.
    just flavor mocha # To build all variants under one single flavor.
    just accents mocha blue # To build only the blue variant under mocha.
    just accents mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
