@@ -136,7 +136,6 @@ SRC_DIR="$SCRIPT_DIR/src"
 OUT_DIR="$SCRIPT_DIR/dist"
 PNG_DIR="$SCRIPT_DIR/pngs"
 HL_DIR="$SCRIPT_DIR/hl"
-BUILD_DIR="$SCRIPT_DIR/build"
 CONFIG_DIR="$SRC_DIR/config"
 
 AUTHORS="$SCRIPT_DIR/AUTHORS"
@@ -176,7 +175,6 @@ echo "[INFO] - Generating inkscape commands..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
   theme_src_dir="$SRC_DIR/$theme_name"
-  theme_build_dir="$BUILD_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
 
@@ -192,7 +190,6 @@ echo "[INFO] - Converting to x11cursor & creating aliases..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
   theme_src_dir="$SRC_DIR/$theme_name"
-  theme_build_dir="$BUILD_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
 
@@ -210,11 +207,11 @@ if [[ $HYPRCURSOR == 1 ]]; then
   for accent in $ACCENTS; do
     theme_name="catppuccin-$FLAVOR-$accent-cursors"
     theme_src_dir="$SRC_DIR/$theme_name"
-    theme_build_dir="$HL_DIR/$theme_name"
+    theme_hl_dir="$HL_DIR/$theme_name"
     theme_out_dir="$OUT_DIR/$theme_name"
 
-    create_hyprcursors "$theme_src_dir" "$theme_build_dir" "$theme_name"
-    compile_hyprcursors "$theme_build_dir" "$theme_out_dir"
+    create_hyprcursors "$theme_src_dir" "$theme_hl_dir" "$theme_name"
+    compile_hyprcursors "$theme_hl_dir" "$theme_out_dir"
   done
   echo "[INFO] - Generating hyprcursor theme complete"
 fi
