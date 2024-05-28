@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -eu
+
+SCRIPT_DIR="$(dirname "$0")"
+SRC_DIR="$SCRIPT_DIR/src"
+OUT_DIR="$SCRIPT_DIR/dist"
+ZIPS_DIR="$SCRIPT_DIR/zips"
+
+[ -d "$ZIPS_DIR" ] || mkdir -p "$ZIPS_DIR"
+
+cd $OUT_DIR
+for dir in */; do
+  [ -e "$dir/index.theme" ] || continue
+  theme_name="$(basename "$dir")"
+  zip -r "../zips/$theme_name" "$theme_name"
+done
+cd ..
+
