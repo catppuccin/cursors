@@ -116,6 +116,8 @@ Requirements:
    just accents mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
    ```
 
+1. Extract built cursors in `./dist` to `$HOME/.icons` or `/usr/share/icons`.
+
 ## 💝 Thanks to
 
 - [varlesh](https://github.com/varlesh/volantes-cursors)
