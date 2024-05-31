@@ -13,7 +13,7 @@ stdenvNoCC.mkDerivation {
     root = ./.;
     fileset = lib.fileset.intersection
     (lib.fileset.fromSource (lib.sources.cleanSource ./.))
-    (lib.fileset.unions [ ./src ./justfile ./build ./create_zips ]);
+    (lib.fileset.unions [ ./src ./justfile ./build ./create_zips ./AUTHORS ./LICENSE ]);
   };
   nativeBuildInputs = [
     just
