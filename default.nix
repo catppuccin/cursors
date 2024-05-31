@@ -1,0 +1,41 @@
+{ lib
+, stdenvNoCC
+, inkscape
+, just
+, xcursorgen
+, hyprcursor
+, zip
+}:
+
+stdenvNoCC.mkDerivation {
+  name = "catppuccin-cursors";
+  src = ./.;
+  nativeBuildInputs = [
+    just
+    xcursorgen
+    inkscape
+    hyprcursor
+    zip
+  ];
+  buildPhase = ''
+    runHook preBuild
+
+    patchShebangs .
+    just all
+    just zip
+
+    runHook postBuild
+  '';
+  installPhase = ''
+    # $out is an automatically generated filepath by nix,
+    # but it's up to you to make it what you need. We'll create a directory at
+    # that filepath, then copy our sources into it.
+    mkdir $out
+    cp -rv ./releases/* $out
+  '';
+  meta = {
+    description = "Catppuccin cursor theme based on Volantes";
+    homepage = "https://github.com/catppuccin/cursors";
+    license = lib.licenses.gpl2;
+  };
+}

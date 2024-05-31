@@ -26,14 +26,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
-      - name: Install dependencies
-        run: sudo apt update && sudo apt install -y inkscape x11-apps
-      - name: Generate cursors
-        run: just all
-      - name: Build zips
-        run: just zip
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build
+        run: nix build . -Lv
       - name: Add zips to release
-        run: gh release upload ${{ needs.release-please.outputs.tag_name }} releases/*.zip
+        run: gh release upload ${{ needs.release-please.outputs.tag_name }} result/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
