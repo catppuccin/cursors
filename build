@@ -63,33 +63,29 @@ create_hyprcursors() {
   local out_dir="$2"
   local theme_name="$3"
   local hypr_dir="$out_dir/hyprcursors"
-  local filename dir cursor_dir striped base_name symlink target cursor_dir theme_comment
+  local filename dir cursor_dir base_name symlink target theme_comment
 
-  [ -d "$src_dir" ] || return 1
   [ -d "$out_dir" ] || mkdir -p "$out_dir"
   [ -d "$hypr_dir" ] || mkdir -p "$hypr_dir"
 
   for file in "$src_dir"/*.svg; do
     filename=$(basename -- "$file")
 
+    # hyprcursor doesn't care about sizes of svgs, can skip the '_24.svg' variant with no impact
     if [[ "$filename" == *_24.svg ]]; then
       continue
     fi
+
+    # we want to put all of the `progress_01, progress_02, etc` into the same directory of `progress`
     if [[ "$filename" == *-[0-9][0-9].svg ]]; then
       dir="${filename%-[0-9][0-9].svg}"
-      cursor_dir="$hypr_dir/$dir"
-      striped="${filename#"$dir"}"
-
-      [ -d "$cursor_dir" ] || mkdir -p "$cursor_dir"
-      cp -- "$file" "$cursor_dir"
     else
       dir="${filename%.svg}"
-      cursor_dir="$hypr_dir/$dir"
-
-      [ -d "$cursor_dir" ] || mkdir -p "$cursor_dir"
-
-      cp -- "$file" "$cursor_dir"
     fi
+
+    cursor_dir="$hypr_dir/$dir"
+    [ -d "$cursor_dir" ] || mkdir -p "$cursor_dir"
+    cp -- "$file" "$cursor_dir"
   done
 
   for config in "$CONFIG_DIR"/*.hl; do
@@ -112,22 +108,21 @@ create_hyprcursors() {
   cat >"$out_dir"/manifest.hl <<-EOM
 		name = ${theme_name%-cursors}
 		description = ${theme_comment#Comment=}
-		version = $(git show -s --format=%cd --date=format:%Y%m%d HEAD)
+    version = "v0.2.1" # x-release-please-version
 		cursors_directory = hyprcursors
 	EOM
 }
 
 compile_hyprcursors() {
-  local src_dir="$1"
+  local hl_dir="$1"
   local out_dir="$2"
   local theme_name="$(basename "$1")"
   local compile_dir="$1/../theme_${theme_name%-cursors}"
-  local filename dir cursor_dir striped base_name symlink target cursor_dir
 
-  [ -d "$src_dir" ] || return 1
+  [ -d "$hl_dir" ] || return 1
   [ -d "$out_dir" ] || mkdir -p "$out_dir"
 
-  hyprcursor-util -c "$src_dir" >/dev/null
+  hyprcursor-util -c "$hl_dir" >/dev/null
   cp -a "$compile_dir/." "$out_dir/"
 }
 
@@ -144,20 +139,15 @@ ALIASES="$SRC_DIR/cursorList"
 
 ACCENTS="blue dark flamingo green lavender light maroon mauve peach pink red rosewater sapphire sky teal yellow"
 INKSCAPE_COMMANDS=""
-
 HYPRCURSOR=0
 
-while getopts "f:a:vh" option; do
+while getopts "f:a:h" option; do
   case $option in
   f)
     FLAVOR="$OPTARG"
     ;;
   a)
     ACCENTS="$OPTARG"
-    ;;
-  v)
-    DEBUG=1
-    echo "[DEBUG] - Debug logging enabled"
     ;;
   h)
     HYPRCURSOR=1
@@ -170,6 +160,11 @@ while getopts "f:a:vh" option; do
 done
 echo "[INFO] - Flavor: '$FLAVOR'"
 echo "[INFO] - Accent(s): '$ACCENTS'"
+if [ $HYPRCURSOR -eq 1 ]; then
+  echo "[INFO] - Building with hyprcursor: TRUE"
+else
+  echo "[INFO] - Building with hyprcursor: FALSE"
+fi
 
 echo "[INFO] - Generating inkscape commands..."
 for accent in $ACCENTS; do
@@ -183,7 +178,7 @@ done
 echo "[INFO] - Generating inkscape commands complete"
 
 echo "[INFO] - Converting SVGs to PNGs..."
-inkscape --shell <<< ${INKSCAPE_COMMANDS} &> /dev/null
+inkscape --shell <<<${INKSCAPE_COMMANDS} &>/dev/null
 echo "[INFO] - Converting SVGs to PNGs complete"
 
 echo "[INFO] - Converting to x11cursor & creating aliases..."

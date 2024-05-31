@@ -26,7 +26,7 @@ stdenvNoCC.mkDerivation {
     runHook preBuild
 
     patchShebangs .
-    just all
+    just all_with_hyprcursor
     just zip
 
     runHook postBuild

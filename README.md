@@ -97,10 +97,10 @@ pkgs.catppuccin-cursors.mochaMauve
 - [xcursorgen](https://wiki.archlinux.org/title/Xcursorgen) to generate the
   cursors.
 - [inkscape](https://wiki.inkscape.org/wiki/Inkscape) to convert SVGs to PNGs.
+- **(Optional)** [hyprcursor](https://github.com/hyprwm/hyprcursor) to include
+  hyprcursor variants.
 - **(Optional)** [just](https://github.com/casey/just) to easily run development
   commands.
-- **(Optional)** [hyprcursor](https://github.com/hyprwm/hyprcursor) to build
-  hyprcursor theme
 
 ### Steps
 
@@ -112,17 +112,15 @@ pkgs.catppuccin-cursors.mochaMauve
    ```
 
 1. Run the following command(s) if you have just installed, if not then look
-   inside the [justfile](./justfile) to understand what commands are being run.
-   All of the following support the `-h` flag to enable building of then
-   hyprcursor theme.
+   inside the [justfile](./justfile) to understand what commands are being run. 
 
    ```bash
    just all # Build all flavor-accent variants.
-   just all -h # Build all flavor-accent variants with hyprcursor support
-   just flavor mocha # To build all variants under one single flavor.
-   just flavor mocha -h # To build all variants under one single flavor with hyprcursor support
-   just accents mocha blue # To build only the blue variant under mocha.
-   just accents mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
+   just all_with_hyprcursor # Build all flavor-accent variants with hyprcursor support
+   just build mocha # To build all variants under one single flavor.
+   just build_with_hyprcursor mocha # To build all variants under one single flavor with hyprcursor support
+   just build mocha blue # To build only the blue variant under mocha.
+   just build mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
    ```
 
 1. Extract built cursors in `./dist` to `$HOME/.icons` or `/usr/share/icons`.
