@@ -29,7 +29,7 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Build
-        run: nix build . -Lv
+        run: nix build . -L
       - name: Add zips to release
         run: gh release upload ${{ needs.release-please.outputs.tag_name }} result/*.zip
         env:

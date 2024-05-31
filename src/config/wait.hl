@@ -1,0 +1,15 @@
+resize_algorithm = bilinear
+hotspot_x = 0.46875
+hotspot_y = 0.46875
+define_size = 64, wait-01.svg, 30
+define_size = 64, wait-02.svg, 30
+define_size = 64, wait-03.svg, 30
+define_size = 64, wait-04.svg, 30
+define_size = 64, wait-05.svg, 30
+define_size = 64, wait-06.svg, 30
+define_size = 64, wait-07.svg, 30
+define_size = 64, wait-08.svg, 30
+define_size = 64, wait-09.svg, 30
+define_size = 64, wait-10.svg, 30
+define_size = 64, wait-11.svg, 30
+define_size = 64, wait-12.svg, 30

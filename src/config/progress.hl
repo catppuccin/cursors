@@ -1,0 +1,15 @@
+resize_algorithm = bilinear
+hotspot_x = 0.0625
+hotspot_y = 0.0625
+define_size = 64, progress-01.svg, 30
+define_size = 64, progress-02.svg, 30
+define_size = 64, progress-03.svg, 30
+define_size = 64, progress-04.svg, 30
+define_size = 64, progress-05.svg, 30
+define_size = 64, progress-06.svg, 30
+define_size = 64, progress-07.svg, 30
+define_size = 64, progress-08.svg, 30
+define_size = 64, progress-09.svg, 30
+define_size = 64, progress-10.svg, 30
+define_size = 64, progress-11.svg, 30
+define_size = 64, progress-12.svg, 30
