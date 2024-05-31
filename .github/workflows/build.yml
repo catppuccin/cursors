@@ -9,13 +9,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
-      - name: Install dependencies
-        run: sudo apt update && sudo apt install -y inkscape x11-apps
-      - name: Generate cursors
-        run: just all
-      - name: Build zips
-        run: just zip
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - name: Build
+        run: nix build . -L
       - name: Set outputs
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -23,4 +20,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 'catppuccin-cursors-${{ steps.vars.outputs.sha_short }}'
-          path: releases/*.zip
+          path: result/*.zip
