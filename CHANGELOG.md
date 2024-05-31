@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/catppuccin/cursors/compare/v0.2.1...v0.3.0) (2024-05-31)
+
+
+### Features
+
+* support `hyprcursor` ([#23](https://github.com/catppuccin/cursors/issues/23)) ([28cb6d2](https://github.com/catppuccin/cursors/commit/28cb6d2a81e7046400eb177f7131b15507468c57))
+
 ## [0.2.1](https://github.com/catppuccin/cursors/compare/v0.2.0...v0.2.1) (2024-05-28)
 
 
