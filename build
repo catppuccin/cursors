@@ -106,11 +106,11 @@ create_hyprcursors() {
 
   theme_comment="$(grep Comment "$src_dir"/index.theme)"
   cat >"$out_dir"/manifest.hl <<-EOM
-		name = ${theme_name%-cursors}
-		description = ${theme_comment#Comment=}
+    name = ${theme_name%-cursors}
+    description = ${theme_comment#Comment=}
     version = "v0.2.1" # x-release-please-version
-		cursors_directory = hyprcursors
-	EOM
+    cursors_directory = hyprcursors
+  EOM
 }
 
 compile_hyprcursors() {
