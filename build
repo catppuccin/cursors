@@ -63,67 +63,31 @@ create_hyprcursors() {
   local out_dir="$2"
   local theme_name="$3"
   local hypr_dir="$out_dir/hyprcursors"
-  local filename dir cursor_dir base_name symlink target theme_comment
 
   [ -d "$out_dir" ] || mkdir -p "$out_dir"
   [ -d "$hypr_dir" ] || mkdir -p "$hypr_dir"
 
-  for file in "$src_dir"/*.svg; do
-    filename=$(basename -- "$file")
-
-    # hyprcursor doesn't care about sizes of svgs, can skip the '_24.svg' variant with no impact
-    if [[ "$filename" == *_24.svg ]]; then
-      continue
-    fi
-
-    # we want to put all of the `progress_01, progress_02, etc` into the same directory of `progress`
-    if [[ "$filename" == *-[0-9][0-9].svg ]]; then
-      dir="${filename%-[0-9][0-9].svg}"
-    else
-      dir="${filename%.svg}"
-    fi
-
-    cursor_dir="$hypr_dir/$dir"
-    [ -d "$cursor_dir" ] || mkdir -p "$cursor_dir"
-    cp -- "$file" "$cursor_dir"
-  done
-
-  for config in "$CONFIG_DIR"/*.hl; do
-    [ -f "$config" ] || continue
-
-    base_name="$(basename "$config" .hl)"
-    cursor_dir="$hypr_dir/$base_name"
-    [ -d "$cursor_dir" ] || continue
-    cp "$config" "$cursor_dir/meta.hl"
-  done
-
-  while read -r symlink target; do
-    cursor_dir="$out_dir/$target"
-    if [ -f "$cursor_dir"/meta.hl ]; then
-      echo "define_override = $symlink" >>"$cursor_dir"/meta.hl
-    fi
-  done <"$ALIASES"
-
-  theme_comment="$(grep Comment "$src_dir"/index.theme)"
-  cat >"$out_dir"/manifest.hl <<-EOM
-name = ${theme_name%-cursors}
-description = ${theme_comment#Comment=}
-version = "v0.3.0" # x-release-please-version
-cursors_directory = hyprcursors
-EOM
+  hyprcursor-util -x "$src_dir" -o "$out_dir" >/dev/null
 }
 
 compile_hyprcursors() {
   local hl_dir="$1"
   local out_dir="$2"
-  local theme_name="$(basename "$1")"
-  local compile_dir="$1/../theme_${theme_name%-cursors}"
+  local theme_name="$(basename "$1" | sed 's/extracted_//')"
 
   [ -d "$hl_dir" ] || return 1
   [ -d "$out_dir" ] || mkdir -p "$out_dir"
 
-  hyprcursor-util -c "$hl_dir" >/dev/null
-  cp -a "$compile_dir/." "$out_dir/"
+  hyprcursor-util -c "$hl_dir" -o "$out_dir" >/dev/null
+  mv "$out_dir/theme_Extracted Theme/hyprcursors" "$out_dir/hyprcursors"
+  rm -rf "$out_dir/theme_Extracted Theme"
+
+  cat >"$out_dir"/manifest.hl <<-EOM
+name = ${theme_name%-cursors}
+description = ${theme_comment#Comment=}
+version = "v0.3.1" # x-release-please-version
+cursors_directory = hyprcursors
+EOM
 }
 
 SCRIPT_DIR="$(dirname "$0")"
@@ -201,12 +165,12 @@ if [[ $HYPRCURSOR == 1 ]]; then
   echo "[INFO] - Generating hyprcursor theme..."
   for accent in $ACCENTS; do
     theme_name="catppuccin-$FLAVOR-$accent-cursors"
-    theme_src_dir="$SRC_DIR/$theme_name"
-    theme_hl_dir="$HL_DIR/$theme_name"
+    theme_src_dir="$SCRIPT_DIR/dist/$theme_name"
+    theme_hl_dir="$HL_DIR/extracted_$theme_name"
     theme_out_dir="$OUT_DIR/$theme_name"
 
-    create_hyprcursors "$theme_src_dir" "$theme_hl_dir" "$theme_name"
-    compile_hyprcursors "$theme_hl_dir" "$theme_out_dir"
+    create_hyprcursors "$theme_src_dir" "$HL_DIR" "$theme_name"
+    compile_hyprcursors "$theme_hl_dir" "$theme_out_dir" "$theme_name"
   done
   echo "[INFO] - Generating hyprcursor theme complete"
 fi
