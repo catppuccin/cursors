@@ -3,7 +3,7 @@
 , inkscape
 , just
 , xcursorgen
-  xcur2png
+, xcur2png
 , hyprcursor
 , zip
 }:
