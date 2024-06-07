@@ -18,6 +18,7 @@ stdenvNoCC.mkDerivation {
   nativeBuildInputs = [
     just
     xcursorgen
+    xcur2png
     inkscape
     hyprcursor
     zip

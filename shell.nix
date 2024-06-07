@@ -6,6 +6,7 @@ pkgs.mkShell {
     just
     hyprcursor
     inkscape
+    xcur2png
     xorg.xcursorgen
     zip
   ];
