@@ -61,7 +61,6 @@ create_aliases() {
 create_hyprcursors() {
   local src_dir="$1"
   local out_dir="$2"
-  local theme_name="$3"
   local hypr_dir="$out_dir/hyprcursors"
 
   [ -d "$out_dir" ] || mkdir -p "$out_dir"
@@ -73,6 +72,7 @@ create_hyprcursors() {
 compile_hyprcursors() {
   local hl_dir="$1"
   local out_dir="$2"
+  local src_dir="$3"
   local theme_name="$(basename "$1" | sed 's/extracted_//')"
 
   [ -d "$hl_dir" ] || return 1
@@ -82,10 +82,12 @@ compile_hyprcursors() {
   mv "$out_dir/theme_Extracted Theme/hyprcursors" "$out_dir/hyprcursors"
   rm -rf "$out_dir/theme_Extracted Theme"
 
+  local theme_comment="$(grep Comment "$src_dir"/index.theme)"
+
   cat >"$out_dir"/manifest.hl <<-EOM
 name = ${theme_name%-cursors}
 description = ${theme_comment#Comment=}
-version = "v0.3.1" # x-release-please-version
+version = "v0.3.0" # x-release-please-version
 cursors_directory = hyprcursors
 EOM
 }
@@ -170,7 +172,7 @@ if [[ $HYPRCURSOR == 1 ]]; then
     theme_out_dir="$OUT_DIR/$theme_name"
 
     create_hyprcursors "$theme_src_dir" "$HL_DIR" "$theme_name"
-    compile_hyprcursors "$theme_hl_dir" "$theme_out_dir" "$theme_name"
+    compile_hyprcursors "$theme_hl_dir" "$theme_out_dir" "$theme_src_dir"
   done
   echo "[INFO] - Generating hyprcursor theme complete"
 fi
