@@ -88,7 +88,7 @@ compile_hyprcursors() {
   cat >"$out_dir"/manifest.hl <<-EOM
 name = ${theme_name%-cursors}
 description = ${theme_comment#Comment=}
-version = "v0.3.1" # x-release-please-version
+version = "v0.4.0" # x-release-please-version
 cursors_directory = hyprcursors
 EOM
 }
