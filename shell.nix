@@ -1,13 +1,9 @@
-{ pkgs ? import <nixpkgs> { } }:
-
-pkgs.mkShell {
-  name = "dev-shell";
-  buildInputs = with pkgs; [
-    just
-    hyprcursor
-    inkscape
-    xorg.xcursorgen
-    zip
-  ];
-}
-
+{
+  pkgs ? import <nixpkgs> { },
+}:
+let
+  mainPkg = pkgs.callPackage ./default.nix { };
+in
+mainPkg.overrideAttrs (oa: {
+  nativeBuildInputs = [ ] ++ (oa.nativeBuildInputs or [ ]);
+})
