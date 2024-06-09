@@ -79,6 +79,7 @@ compile_hyprcursors() {
   [ -d "$out_dir" ] || mkdir -p "$out_dir"
 
   hyprcursor-util -c "$hl_dir" -o "$out_dir" >/dev/null
+  # For whatever reason, hyprcursor appends "Extracted Theme" to the end so we have to work around it
   mv "$out_dir/theme_Extracted Theme/hyprcursors" "$out_dir/hyprcursors"
   rm -rf "$out_dir/theme_Extracted Theme"
 
@@ -167,7 +168,7 @@ if [[ $HYPRCURSOR == 1 ]]; then
   echo "[INFO] - Generating hyprcursor theme..."
   for accent in $ACCENTS; do
     theme_name="catppuccin-$FLAVOR-$accent-cursors"
-    theme_src_dir="$SCRIPT_DIR/dist/$theme_name"
+    theme_src_dir="$OUT_DIR/$theme_name"
     theme_hl_dir="$HL_DIR/extracted_$theme_name"
     theme_out_dir="$OUT_DIR/$theme_name"
 
