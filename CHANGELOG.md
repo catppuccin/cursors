@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/catppuccin/cursors/compare/v0.3.0...v0.3.1) (2024-06-09)
+
+
+### Bug Fixes
+
+* **hyprcursor:** solve application consistency and scaling ([#29](https://github.com/catppuccin/cursors/issues/29)) ([4ed2c6a](https://github.com/catppuccin/cursors/commit/4ed2c6a76613825ea59e3edff50818353354a396))
+
 ## [0.3.0](https://github.com/catppuccin/cursors/compare/v0.2.1...v0.3.0) (2024-05-31)
 
 
