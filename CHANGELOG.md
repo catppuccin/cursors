@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/catppuccin/cursors/compare/v0.3.1...v0.4.0) (2024-10-14)
+
+
+### Features
+
+* support Plasma's SVG cursors implementation ([#37](https://github.com/catppuccin/cursors/issues/37)) ([4bcb0c1](https://github.com/catppuccin/cursors/commit/4bcb0c163f5240b78627b7d246e24465b388538b))
+
+
+### Build system & distribution
+
+* **release-please:** remove `draft: true` ([#38](https://github.com/catppuccin/cursors/issues/38)) ([71c2d66](https://github.com/catppuccin/cursors/commit/71c2d66b1d5e4936efbfe726f080062ec003ee04))
+
 ## [0.3.1](https://github.com/catppuccin/cursors/compare/v0.3.0...v0.3.1) (2024-06-09)
 
 
