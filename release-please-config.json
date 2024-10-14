@@ -1,6 +1,5 @@
 {
   "last-release-sha": "31a284853779d1b179c2b8597f3c81c401e5ad1e",
-  "draft": true,
   "packages": {
     ".": {
       "package-name": "",
