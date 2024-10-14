@@ -48,6 +48,29 @@ convert_to_x11cursor() {
   done
 }
 
+write_scalable() {
+  local src_dir="$1"
+  local out_dir="$2"
+  local config base_name
+
+  [ -d "$src_dir" ] || return 1
+
+  if [ -d "$out_dir" ]; then
+    rm -rf "$out_dir"
+  fi
+
+  mkdir -p "$out_dir"
+
+  for config in "$CONFIG_DIR"/*.json; do
+    [ -f "$config" ] || continue
+    base_name="$(basename "$config" .json)"
+    cursor_out="$out_dir/$base_name"
+    mkdir "$cursor_out"
+    find "$src_dir" -type f \( -name "$base_name-??.svg" -o -name "$base_name.svg" \) ! -name "*_24.svg" -exec cp {} "$cursor_out" \;
+    cp "$config" "$cursor_out/metadata.json"
+  done
+}
+
 create_aliases() {
   local out_dir="$1"
   local symlink target
@@ -156,7 +179,9 @@ for accent in $ACCENTS; do
   theme_png_dir="$PNG_DIR/$theme_name"
 
   convert_to_x11cursor "$theme_png_dir" "$theme_out_dir/cursors"
+  write_scalable "$theme_src_dir" "$theme_out_dir/cursors_scalable"
   create_aliases "$theme_out_dir/cursors"
+  create_aliases "$theme_out_dir/cursors_scalable"
 
   cp -f "$theme_src_dir/index.theme" "$theme_out_dir"
   cp -f "$AUTHORS" "$theme_out_dir"
