@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+
+import sys
+import math
+import re
+import subprocess
+import shutil
+import json
+from pathlib import Path
+from PySide6.QtSvg import QSvgRenderer
+
+# Displace the hotspot to the right and down by 1/100th of a pixel, then
+# floor. So if by some float error the hotspot is at 4.995, it will be
+# displaced to 5.005, then floored to 5. This is to prevent the hotspot
+# from potential off-by-one errors when the cursor is scaled.
+HOTSPOT_DISPLACE = 1
+
+if len(sys.argv) <= 7:
+    print("Usage: " + sys.argv[0] + " <svg cursor dir> <pixmap dir> <xcursor output dir> <svg cursor output dir> <base size> <animation frame time> <scales>")
+    sys.exit(1)
+
+svg_dir = Path(sys.argv[1])
+pixmap_dir = Path(sys.argv[2])
+xcursor_output_dir = Path(sys.argv[3])
+svg_cursor_output_dir = Path(sys.argv[4])
+nominal_size = int(sys.argv[5])
+delay = int(sys.argv[6])
+scales = [int(i) for i in sys.argv[7:]]
+
+svg_files = list(svg_dir.glob("*.svg"))
+svg_files.sort()
+
+processed_svgs = set()
+
+for svg_file in svg_files:
+    if svg_file in processed_svgs:
+        continue
+    processed_svgs.add(svg_file)
+
+    basename = svg_file.stem
+    basename = re.sub(r"-[0-9_]*$", "", basename)
+    print(f"   {basename}")
+
+    # Animated?
+    frames = list(svg_dir.glob(basename + "-[0-9]*.svg"))
+    frames.sort()
+    processed_svgs.update(frames)
+
+    svg = QSvgRenderer(str(svg_file))
+    hotspot = svg.transformForElement("hotspot").map(svg.boundsOnElement("hotspot")).boundingRect().topLeft()
+
+    # Generate xcursor
+    xcursor_config_path = pixmap_dir / "config" / f"{basename}.config"
+    with open(xcursor_config_path, "w") as config:
+        for scale in scales:
+            size = math.floor(nominal_size * scale / 100)
+            hotspot_x = math.floor((hotspot.x() * scale + HOTSPOT_DISPLACE) / 100)
+            hotspot_y = math.floor((hotspot.y() * scale + HOTSPOT_DISPLACE) / 100)
+
+            if len(frames) == 0:
+                print(f"{size} {hotspot_x} {hotspot_y} x{scale}/{basename}.png", file=config)
+            else:
+                for i in frames:
+                    t = i.stem
+                    print(f"{size} {hotspot_x} {hotspot_y} x{scale}/{t}.png {delay}", file=config)
+
+    subprocess.run(["xcursorgen", "-p", pixmap_dir, xcursor_config_path, xcursor_output_dir / basename], check=True)
+
+    # Generate SVG cursor
+    output_dir = svg_cursor_output_dir / basename
+    output_dir.mkdir(parents=True, exist_ok=True)
+    hotspot_x = hotspot.x()
+    hotspot_y = hotspot.y()
+    with open(output_dir / "metadata.json", "w") as metadata:
+        if len(frames) == 0:
+            filename = svg_file.name
+            shutil.copyfile(svg_file, output_dir / filename)
+            json.dump([{
+                    "filename": filename,
+                    "hotspot_x": hotspot_x,
+                    "hotspot_y": hotspot_y
+                }],
+                metadata)
+        else:
+            l = []
+            for i in frames:
+                filename = i.name
+                shutil.copyfile(i, output_dir / filename)
+                l.append({
+                    "filename": filename,
+                    "hotspot_x": hotspot_x,
+                    "hotspot_y": hotspot_y,
+                    "delay": delay
+                })
+            json.dump(l, metadata)
