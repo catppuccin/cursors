@@ -3,9 +3,10 @@ set -euo pipefail
 
 BIN_DIR="$( dirname "${BASH_SOURCE[0]}" )"
 SRC_DIR="src"
-RAWSVG_DIR="$SRC_DIR/svg"
-INDEX="$SRC_DIR/index.theme"
-ALIASES="$SRC_DIR/alias.list"
+BUILD_DIR="$2"
+RAWSVG_DIR="$1"
+INDEX="$1/index.theme"
+ALIASES="$SRC_DIR/cursorList"
 
 NOMINAL_SIZE=24
 REAL_SIZE=32
@@ -36,9 +37,9 @@ echo -e "\033[0KChecking Requirements... DONE"
 
 echo -ne "Making Folders... \\r"
 for scale in $SCALES; do
-	mkdir -p "build/x$scale"
+	mkdir -p "$BUILD_DIR/x$scale"
 done
-mkdir -p "build/config"
+mkdir -p "$BUILD_DIR/config"
 echo -e "\033[0KMaking Folders... DONE";
 
 echo "Generating pixmaps..."
@@ -50,7 +51,7 @@ for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 	echo -ne "    $BASENAME...\\r"
 
 	for scale in $SCALES; do
-		DIR="build/x${scale}"
+		DIR="$BUILD_DIR/x${scale}"
 		if [[ "${DIR}/${BASENAME}.png" -ot ${RAWSVG} ]]; then
 			genPixmaps="${genPixmaps} export-width:$((${REAL_SIZE}*scale/100)); export-height:$((${REAL_SIZE}*scale/100)); export-filename:${DIR}/${BASENAME}.png; export-do;"
 		fi
@@ -64,12 +65,11 @@ done
 echo "Generating pixmaps... DONE"
 
 echo "Generating cursor theme..."
-OUTPUT="$(grep --only-matching --perl-regex "(?<=Name\=).*$" $INDEX)"
-OUTPUT=${OUTPUT// /_}
+OUTPUT=$3
 rm -rf "$OUTPUT"
 mkdir -p "$OUTPUT/cursors"
 mkdir -p "$OUTPUT/cursors_scalable"
-$BIN_DIR/generate_cursors ${RAWSVG_DIR} "build" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
+$BIN_DIR/generate_cursors ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
 echo "Generating cursor theme... DONE"
 
 echo -ne "Generating shortcuts...\\r"
