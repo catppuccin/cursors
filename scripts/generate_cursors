@@ -78,7 +78,8 @@ for svg_file in svg_files:
             json.dump([{
                     "filename": filename,
                     "hotspot_x": hotspot_x,
-                    "hotspot_y": hotspot_y
+                    "hotspot_y": hotspot_y,
+                    "nominal_size": nominal_size
                 }],
                 metadata)
         else:
@@ -90,6 +91,7 @@ for svg_file in svg_files:
                     "filename": filename,
                     "hotspot_x": hotspot_x,
                     "hotspot_y": hotspot_y,
+                    "nominal_size": nominal_size,
                     "delay": delay
                 })
             json.dump(l, metadata)
