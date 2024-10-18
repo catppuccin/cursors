@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-    <defs>
-        <filter id="a" width="1.04" height="1.057" x="-.02" y="-.028" style="color-interpolation-filters:sRGB">
-            <feGaussianBlur stdDeviation=".142"/>
-        </filter>
-    </defs>
-    <path d="M15.963 18.476a1 1 0 0 1-.89-.24c-.666-.613-1.92-1.287-3.075-1.287-1.152-.001-2.403.676-3.072 1.289a1 1 0 0 1-1.524-1.268l3.748-6a1 1 0 0 1 1.696 0l3.752 6a1 1 0 0 1-.635 1.506m-2.828-3.273-1.137-1.819-1.135 1.817c.384-.08.72-.253 1.135-.252.415 0 .753.173 1.137.254M4.5 9.499a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1z" style="color:#000;opacity:.1;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;filter:url(#a)"/>
-    <path d="m7.75 17 3.748-6 3.752 6c-.831-.766-2.249-1.55-3.752-1.551s-2.917.79-3.748 1.55M4 8V7h15v1z" style="fill:#df8e1d;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"/>
-</svg>
