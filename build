@@ -8,11 +8,6 @@ set -eu
 
 INKSCAPE_VERSION=$(inkscape --version 2>/dev/null | awk '/Inkscape[ ]/ {print $2; exit}')
 
-if ! command -v whiskers &> /dev/null; then
-    echo "Error: whiskers is not installed or not in PATH."
-    exit
-fi
-
 build_svgs() {
   local src_dir="$1"
 
