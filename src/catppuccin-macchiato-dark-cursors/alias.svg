@@ -16,7 +16,7 @@
     <path d="M30 22.5a7.5 7.5 0 0 1-7.5 7.5 7.5 7.5 0 0 1-7.5-7.5 7.5 7.5 0 0 1 7.5-7.5 7.5 7.5 0 0 1 7.5 7.5" style="opacity:1;fill:#c6a0f6;fill-opacity:1;stroke:none;stroke-width:2.72727251;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     <path d="M29 22.5a6.5 6.5 0 0 1-6.5 6.5 6.5 6.5 0 0 1-6.5-6.5 6.5 6.5 0 0 1 6.5-6.5 6.5 6.5 0 0 1 6.5 6.5" style="opacity:1;fill:#24273a;fill-opacity:1;stroke:none;stroke-width:2.36363626;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     <path d="M29 22.5a6.5 6.5 0 0 1-6.5 6.5 6.5 6.5 0 0 1-6.5-6.5 6.5 6.5 0 0 1 6.5-6.5 6.5 6.5 0 0 1 6.5 6.5" style="opacity:.2;fill:#24273a;fill-opacity:1;stroke:none;stroke-width:2.36364;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
-    <path d="M23.5 18.5v2h-1.71c-.097-.01-.193.001-.29 0a3 3 0 0 0 0 6v-1a2 2 0 0 1 0-4h2v2l4-2.5z" style="opacity:.2;fill:#c6a0f6;fill-opacity:1;fill-rule:evenodd;filter:url(#d)"/>
+    <path d="M23.5 18.5v2h-1.71c-.097-.01-.193.001-.29 0a3 3 0 0 0 0 6v-1a2 2 0 0 1 0-4h2v2l4-2.5z" style="opacity:.2;fill:#000;fill-opacity:1;fill-rule:evenodd;filter:url(#d)"/>
     <path d="M23 18v2h-1.71c-.097-.01-.193.001-.29 0a3 3 0 0 0 0 6v-1a2 2 0 0 1 0-4h2v2l4-2.5z" style="fill:#c6a0f6;fill-opacity:1;fill-rule:evenodd"/>
     <path d="M2.014 2 2 22c1-3 3.247-5.604 5.603-6.857C9.023 14.419 10.54 14.01 12 14a8.4 8.4 0 0 1 4 1z" style="opacity:1;fill:#24273a;fill-opacity:1;stroke:none;stroke-width:1.67926061;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
 </svg>
