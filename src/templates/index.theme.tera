@@ -1,0 +1,11 @@
+---
+whiskers:
+  version: 2.5.1
+  matrix:
+  - accent: ["blue", "dark", "flamingo", "green", "lavender", "light", "maroon", "mauve", "peach", "pink", "red", "rosewater", "sapphire", "sky", "teal", "yellow"]
+  - flavor
+  filename: "work/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/index.theme"
+---
+[Icon Theme]
+Name=Catppuccin {{ flavor.name }} {{ accent | capitalize }}
+Comment=based on Volantes Cursors
