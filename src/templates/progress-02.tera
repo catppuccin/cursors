@@ -4,7 +4,7 @@ whiskers:
   matrix:
     - accent: ["blue", "dark", "flamingo", "green", "lavender", "light", "maroon", "mauve", "peach", "pink", "red", "rosewater", "sapphire", "sky", "teal", "yellow"]
     - flavor
-  filename: "src/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/progress-02.svg"
+  filename: "svgs/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/progress-02.svg"
 ---
 {%- if accent == 'dark' %}
   {%- set inner = flavor.colors["base"] -%}

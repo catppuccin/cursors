@@ -4,7 +4,7 @@ whiskers:
   matrix:
   - accent: ["blue", "dark", "flamingo", "green", "lavender", "light", "maroon", "mauve", "peach", "pink", "red", "rosewater", "sapphire", "sky", "teal", "yellow"]
   - flavor
-  filename: "src/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/index.theme"
+  filename: "svgs/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/index.theme"
 ---
 [Icon Theme]
 Name=Catppuccin {{ flavor.name }} {{ accent | capitalize }}
