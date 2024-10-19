@@ -8,24 +8,6 @@ set -eu
 
 INKSCAPE_VERSION=$(inkscape --version 2>/dev/null | awk '/Inkscape[ ]/ {print $2; exit}')
 
-if ! command -v whiskers &> /dev/null; then
-    echo "Error: whiskers is not installed or not in PATH."
-    exit
-fi
-
-whiskerify() {
-  local src_dir="$1"
-
-  if [[ -n "$2" ]]; then
-    flavour="-f $2"
-  fi
-
-  for file in $src_dir/templates/*.tera; do
-    [ -f "$file" ] || continue
-    whiskers $file $flavour
-  done
-}
-
 # Generates the commands required for SVG -> PNG conversion
 # These commands are to be used within inkscape's "shell" mode which allows for batch processing in a single inkscape process
 generate_inkscape_commands() {
@@ -138,7 +120,6 @@ SCRIPT_DIR="$(dirname "$0")"
 SRC_DIR="$SCRIPT_DIR/src"
 OUT_DIR="$SCRIPT_DIR/dist"
 PNG_DIR="$SCRIPT_DIR/pngs"
-WORK_DIR="$SCRIPT_DIR/work"
 HL_DIR="$SCRIPT_DIR/hl"
 CONFIG_DIR="$SRC_DIR/config"
 
@@ -175,14 +156,10 @@ else
   echo "[INFO] - Building with hyprcursor: FALSE"
 fi
 
-echo "[INFO] - Generating SVGs..."
-whiskerify $SRC_DIR $FLAVOR
-echo "[INFO] - Generating SVGs complete."
-
 echo "[INFO] - Generating inkscape commands..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
-  theme_src_dir="$WORK_DIR/$theme_name"
+  theme_src_dir="$SRC_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
 
@@ -197,7 +174,7 @@ echo "[INFO] - Converting SVGs to PNGs complete"
 echo "[INFO] - Converting to x11cursor & creating aliases..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
-  theme_src_dir="$WORK_DIR/$theme_name"
+  theme_src_dir="$SRC_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
 

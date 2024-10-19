@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+    <defs>
+        <filter id="a" width="1.049" height="1.044" x="-.024" y="-.022" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation=".142"/>
+        </filter>
+    </defs>
+    <path d="M12.5 5a1 1 0 0 0-.914.594l-6 13.5a1 1 0 0 0 1.621 1.113c1.549-1.551 3.65-2.642 5.32-2.705 2.023-.035 4.159 1.23 5.17 2.594a1 1 0 0 0 1.717-1.002l-6-13.5A1 1 0 0 0 12.5 5m0 3.463 3.48 7.832c-1.072-.494-2.252-.819-3.5-.795h-.015c-1.2.043-2.4.406-3.53.98z" style="color:#000;opacity:.1;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;filter:url(#a)"/>
+    <path d="M12 4.5a1 1 0 0 0-.914.594l-6 13.5a1 1 0 0 0 1.621 1.113c1.548-1.551 3.65-2.642 5.32-2.705 2.022-.035 4.158 1.23 5.17 2.594a1 1 0 0 0 1.717-1.002l-6-13.5A1 1 0 0 0 12 4.5m0 3.463 3.48 7.832c-1.073-.494-2.252-.819-3.5-.795h-.015c-1.2.043-2.4.406-3.53.98z" style="color:#000;fill:#303446;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;fill-opacity:1"/>
+    <path d="M12 5.5 6 19c1.694-1.698 3.955-2.926 6-3 2.423-.046 4.781 1.357 6 3Z" style="fill:#81c8be;fill-opacity:1;stroke:none;stroke-width:1.27391;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+</svg>

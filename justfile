@@ -15,6 +15,13 @@ clean_hl:
 zip:
   ./create_zips
 
+svgs:
+  #!/usr/bin/env bash
+  for file in src/templates/*.tera; do
+    [ -f "$file" ] || continue
+    whiskers $file
+  done
+
 # Generate a single flavor with accents, defaults to all accents
 build f a=accents:
   ./build -f {{f}} -a '{{a}}'

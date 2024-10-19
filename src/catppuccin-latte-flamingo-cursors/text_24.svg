@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+    <defs>
+        <filter id="a" width="1.103" height="1.03" x="-.052" y="-.015" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation=".108"/>
+        </filter>
+    </defs>
+    <path d="M10.5 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1v11a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1v-11a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2z" style="color:#000;opacity:.1;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;filter:url(#a)"/>
+    <path d="M10 3a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1v11a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1V6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-2z" style="color:#000;fill:#eff1f5;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;fill-opacity:1"/>
+    <path d="M10 4v1h1v13h-1v1h3v-1h-1V5h1V4h-2z" style="fill:#dd7878;fill-opacity:1;stroke:none;stroke-width:1.01551;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
+</svg>
