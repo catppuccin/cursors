@@ -94,6 +94,8 @@ pkgs.catppuccin-cursors.mochaMauve
 
 ### Requirements
 
+- [whiskers](https://github.com/catppuccin/whiskers) to generate the
+cursor SVGs.
 - [xcursorgen](https://wiki.archlinux.org/title/Xcursorgen) to generate the
   cursors.
 - [inkscape](https://wiki.inkscape.org/wiki/Inkscape) to convert SVGs to PNGs.
