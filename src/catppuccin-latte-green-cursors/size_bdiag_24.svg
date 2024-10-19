@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+    <path d="M18.299 4.521a1 1 0 0 1 1.18 1.182l-1.249 6.031a1 1 0 0 1-1.976-.144c-.021-.365-.16-.867-.381-1.371l-5.655 5.654c.505.22 1.007.36 1.372.38a1 1 0 0 1 .144 1.977l-6.031 1.248a1 1 0 0 1-1.182-1.18l1.242-6.036a1 1 0 0 1 1.979.144c.02.362.158.865.379 1.37l5.654-5.655c-.505-.221-1.007-.359-1.369-.379a1 1 0 0 1-.145-1.978Zm-1.086 2.264-1.416.291c.22.166.472.252.673.453s.285.452.45.672zM7.076 15.797l-.291 1.416L8.2 16.92c-.22-.165-.47-.248-.672-.45-.201-.201-.287-.453-.453-.673" style="color:#000;opacity:.1;fill:#000;fill-opacity:1;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;filter:url(#a)"/>
+    <path d="M11.962 6.243 18 5l-1.248 6.032c-.057-.98-.55-2.358-1.49-3.295-.938-.937-2.317-1.44-3.3-1.494m-5.72 5.72c.055.982.557 2.362 1.495 3.3.937.939 2.315 1.432 3.295 1.489L5 18Zm7.992-3.887.684.684-6.158 6.158-.684-.684z" style="fill:#40a02b;fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"/>
+    <defs>
+        <filter id="a" width="1.047" height="1.047" x="-.023" y="-.023" style="color-interpolation-filters:sRGB">
+            <feGaussianBlur stdDeviation=".147"/>
+        </filter>
+    </defs>
+</svg>
