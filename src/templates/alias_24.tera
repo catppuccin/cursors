@@ -15,8 +15,8 @@ whiskers:
   {%- set border = flavor.colors["base"] -%}
   {%- set special = border -%}
 {% else %}
-  {%- set border = flavor.colors["base"] -%}
-  {%- set inner = flavor.colors[accent] -%}
+  {%- set border = flavor.colors[accent] -%}
+  {%- set inner = flavor.colors["base"] -%}
   {%- set special = border -%}
 {% endif -%}
 
