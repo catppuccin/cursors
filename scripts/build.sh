@@ -57,7 +57,7 @@ for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 		fi
 	done
 	if [ "$genPixmaps" != "file-open:${RAWSVG};" ]; then
-		inkscape --shell < <(echo "${genPixmaps}") > /dev/null
+		inkscape --shell <<<${genPixmaps} &>/dev/null
 	fi
 
 	echo "    $BASENAME... DONE"
