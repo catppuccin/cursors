@@ -6,18 +6,23 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flavour: [latte, frappe, macchiato, mocha]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Build
-        run: nix build . -L
+        run: just build_with_hyprcursor ${{ matrix.flavour }}
+      - name: Zip
+        run: just zip
       - name: Set outputs
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: 'catppuccin-cursors-${{ steps.vars.outputs.sha_short }}'
-          path: result/*.zip
+          name: 'catppuccin-cursors-${{ matrix.flavour }}-${{ steps.vars.outputs.sha_short }}'
+          path: dist/*.zip
