@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+BIN_DIR="$( dirname "${BASH_SOURCE[0]}" )"
+SRC_DIR="src"
+BUILD_DIR="$2"
+RAWSVG_DIR="$1"
+ALIASES="$SRC_DIR/cursorList"
+
+NOMINAL_SIZE=24
+REAL_SIZE=32
+FRAME_TIME=30
+SCALES="50 75 100 125 150 175 200 225 250 275 300"
+
+# Make folders
+for scale in $SCALES; do
+	mkdir -p "$BUILD_DIR/x$scale"
+done
+mkdir -p "$BUILD_DIR/config"
+
+# Generate pixmaps
+for RAWSVG in ${RAWSVG_DIR}/*.svg; do
+	BASENAME=${RAWSVG##*/}
+	BASENAME=${BASENAME%.*}
+	genPixmaps="file-open:${RAWSVG};"
+
+	for scale in $SCALES; do
+		DIR="$BUILD_DIR/x${scale}"
+		if [[ "${DIR}/${BASENAME}.png" -ot ${RAWSVG} ]]; then
+			genPixmaps="${genPixmaps} export-width:$((${REAL_SIZE}*scale/100)); export-height:$((${REAL_SIZE}*scale/100)); export-filename:${DIR}/${BASENAME}.png; export-do;"
+		fi
+	done
+	if [ "$genPixmaps" != "file-open:${RAWSVG};" ]; then
+		inkscape --shell <<<${genPixmaps} &>/dev/null
+	fi
+
+done
+
+# Generate cursor theme
+OUTPUT=$3
+rm -rf "$OUTPUT"
+mkdir -p "$OUTPUT/cursors"
+mkdir -p "$OUTPUT/cursors_scalable"
+$BIN_DIR/generate-xcursor-plasmasvg ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
+
+# Generate shortcuts
+while read ALIAS ; do
+	FROM=${ALIAS% *}
+	TO=${ALIAS#* }
+
+	if [[ -e "$OUTPUT/cursors/$FROM" ]]; then
+		continue
+	fi
+
+	ln -s "$TO" "$OUTPUT/cursors/$FROM"
+done < $ALIASES
+
+while read ALIAS ; do
+	FROM=${ALIAS% *}
+	TO=${ALIAS#* }
+
+	if [[ -e "$OUTPUT/cursors_scalable/$FROM" ]]; then
+		continue
+	fi
+
+	ln -s "$TO" "$OUTPUT/cursors_scalable/$FROM"
+done < $ALIASES

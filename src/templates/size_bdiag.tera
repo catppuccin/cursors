@@ -28,4 +28,10 @@ whiskers:
     <path d="m24 7-1.742 8c-.076-1.312-.48-3.267-1.735-4.521S17.315 8.809 16 8.736Z" style="opacity:1;fill:#{{ inner.hex }};fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"/>
     <path d="M19.432 10.861c.137.102.268.208.384.325q.174.175.325.38l-8.575 8.575a3 3 0 0 1-.38-.325 3.4 3.4 0 0 1-.325-.384Z" style="opacity:1;fill:#{{ inner.hex }};fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"/>
     <path d="M8.736 16c.073 1.315.488 3.268 1.743 4.523 1.254 1.255 3.21 1.659 4.521 1.735L7 24Z" style="opacity:1;fill:#{{ inner.hex }};fill-opacity:1;stroke:none;stroke-width:0;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal"/>
+    <path
+    id="hotspot"
+    d="m 16,15 h -1 v 1 h 1 z"
+    display="none"
+    fill="#333333"
+    stroke-width="1.18965" />
 </svg>

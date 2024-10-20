@@ -3,9 +3,9 @@ _default:
 
 accents := "blue dark flamingo green lavender light maroon mauve peach pink red rosewater sapphire sky teal yellow"
 
-# Remove all files in the ".pngs/", ".hl/", "./dist" and "./releases" directories
+# Remove all files in the ".pngs/", ".hl/", "./dist", "./releases" and "./svgs" directories
 clean:
-  rm -rf pngs/ hl/ dist/ releases/
+  rm -rf pngs/ hl/ dist/ releases/ svgs/
 
 # Remove all hyprcursor related files
 clean_hl:
@@ -13,7 +13,7 @@ clean_hl:
 
 # Zip all directories inside of "./dist"
 zip:
-  ./create_zips
+  ./scripts/create_zips
 
 # Generate a single flavor with accents, defaults to all accents
 build f a=accents:

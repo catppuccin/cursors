@@ -6,8 +6,6 @@
 
 set -eu
 
-INKSCAPE_VERSION=$(inkscape --version 2>/dev/null | awk '/Inkscape[ ]/ {print $2; exit}')
-
 build_svgs() {
   local src_dir="$1"
 
@@ -19,79 +17,6 @@ build_svgs() {
     [ -f "$file" ] || continue
     whiskers $file $flavour
   done
-}
-
-# Generates the commands required for SVG -> PNG conversion
-# These commands are to be used within inkscape's "shell" mode which allows for batch processing in a single inkscape process
-generate_inkscape_commands() {
-  local src_dir="$1"
-  local out_dir="$2"
-  local file size bitmap_file
-
-  [ -d "$src_dir" ] || return 1
-  [ -d "$out_dir" ] || mkdir -p "$out_dir"
-
-  # shellcheck disable=SC2016
-  for file in "$src_dir"/*.svg; do
-    [ -f "$file" ] || continue
-    for size in 24 32 48 64; do
-      bitmap_file="${out_dir%/}/$(basename "$file" .svg)_${size}.png"
-      INKSCAPE_COMMANDS+="file-open:$file; export-filename:$bitmap_file; export-height:$size; export-width:$size; export-do; file-close;"
-    done
-  done
-}
-
-convert_to_x11cursor() {
-  local src_dir="$1"
-  local out_dir="$2"
-  local config base_name
-
-  [ -d "$src_dir" ] || return 1
-
-  if [ -d "$out_dir" ]; then
-    rm -rf "$out_dir"
-  fi
-
-  mkdir -p "$out_dir"
-
-  for config in "$CONFIG_DIR"/*.cursor; do
-    [ -f "$config" ] || continue
-    base_name="$(basename "$config" .cursor)"
-    xcursorgen -p "$src_dir" "$config" "$out_dir/$base_name"
-  done
-}
-
-write_scalable() {
-  local src_dir="$1"
-  local out_dir="$2"
-  local config base_name
-
-  [ -d "$src_dir" ] || return 1
-
-  if [ -d "$out_dir" ]; then
-    rm -rf "$out_dir"
-  fi
-
-  mkdir -p "$out_dir"
-
-  for config in "$CONFIG_DIR"/*.json; do
-    [ -f "$config" ] || continue
-    base_name="$(basename "$config" .json)"
-    cursor_out="$out_dir/$base_name"
-    mkdir "$cursor_out"
-    find "$src_dir" -type f \( -name "$base_name-??.svg" -o -name "$base_name.svg" \) ! -name "*_24.svg" -exec cp {} "$cursor_out" \;
-    cp "$config" "$cursor_out/metadata.json"
-  done
-}
-
-create_aliases() {
-  local out_dir="$1"
-  local symlink target
-
-  while read -r symlink target; do
-    [ -e "$out_dir/$symlink" ] && continue
-    ln -sf "$target" "$out_dir/$symlink"
-  done <"$ALIASES"
 }
 
 create_hyprcursors() {
@@ -135,14 +60,12 @@ OUT_DIR="$SCRIPT_DIR/dist"
 PNG_DIR="$SCRIPT_DIR/pngs"
 SVGS_DIR="$SCRIPT_DIR/svgs"
 HL_DIR="$SCRIPT_DIR/hl"
-CONFIG_DIR="$SRC_DIR/config"
 
 AUTHORS="$SCRIPT_DIR/AUTHORS"
 LICENSE="$SCRIPT_DIR/LICENSE"
 ALIASES="$SRC_DIR/cursorList"
 
 ACCENTS="blue dark flamingo green lavender light maroon mauve peach pink red rosewater sapphire sky teal yellow"
-INKSCAPE_COMMANDS=""
 HYPRCURSOR=0
 
 while getopts "f:a:h" option; do
@@ -174,38 +97,20 @@ echo "[INFO] - Generating SVGs..."
 build_svgs $SRC_DIR $FLAVOR
 echo "[INFO] - Generating SVGs complete."
 
-echo "[INFO] - Generating inkscape commands..."
+echo "[INFO] - Converting to xcursor & creating plasma svg cursors..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
   theme_src_dir="$SVGS_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
 
-  generate_inkscape_commands "$theme_src_dir" "$theme_png_dir"
-done
-echo "[INFO] - Generating inkscape commands complete"
+  scripts/build-xcursor-plasmasvg "$theme_src_dir" "$theme_png_dir" "$theme_out_dir"
 
-echo "[INFO] - Converting SVGs to PNGs..."
-inkscape --shell <<<${INKSCAPE_COMMANDS} &>/dev/null
-echo "[INFO] - Converting SVGs to PNGs complete"
-
-echo "[INFO] - Converting to x11cursor & creating aliases..."
-for accent in $ACCENTS; do
-  theme_name="catppuccin-$FLAVOR-$accent-cursors"
-  theme_src_dir="$SVGS_DIR/$theme_name"
-  theme_out_dir="$OUT_DIR/$theme_name"
-  theme_png_dir="$PNG_DIR/$theme_name"
-
-  convert_to_x11cursor "$theme_png_dir" "$theme_out_dir/cursors"
-  write_scalable "$theme_src_dir" "$theme_out_dir/cursors_scalable"
-  create_aliases "$theme_out_dir/cursors"
-  create_aliases "$theme_out_dir/cursors_scalable"
-
-  cp -f "$theme_src_dir/index.theme" "$theme_out_dir"
   cp -f "$AUTHORS" "$theme_out_dir"
   cp -f "$LICENSE" "$theme_out_dir"
+  cp -f "$theme_src_dir/index.theme" "$theme_out_dir"
 done
-echo "[INFO] - Converting to x11cursor & creating aliases complete"
+echo "[INFO] - Converting to xcursor & creating plasma svg cursors complete"
 
 if [[ $HYPRCURSOR == 1 ]]; then
   echo "[INFO] - Generating hyprcursor theme..."

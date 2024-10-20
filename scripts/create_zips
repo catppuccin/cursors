@@ -3,9 +3,10 @@
 set -eu
 
 SCRIPT_DIR="$(dirname "$0")"
-SRC_DIR="$SCRIPT_DIR/src"
-OUT_DIR="$SCRIPT_DIR/dist"
-ZIPS_DIR="$SCRIPT_DIR/releases"
+ROOT="$(dirname $SCRIPT_DIR)"
+SRC_DIR="$ROOT/src"
+OUT_DIR="$ROOT/dist"
+ZIPS_DIR="$ROOT/releases"
 
 [ -d "$ZIPS_DIR" ] || mkdir -p "$ZIPS_DIR"
 
