@@ -39,7 +39,7 @@ for svg_file in svg_files:
 
     basename = svg_file.stem
     basename = re.sub(r"-[0-9_]*$", "", basename)
-    print(f"   {basename}")
+    # print(f"   {basename}")
 
     # Animated?
     frames = list(svg_dir.glob(basename + "-[0-9]*.svg"))

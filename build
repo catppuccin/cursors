@@ -111,6 +111,8 @@ for accent in $ACCENTS; do
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
 
+  echo "Generating $FLAVOR - $accent"
+
   scripts/build.sh $theme_src_dir $PNG_DIR/$theme_name $OUT_DIR/$theme_name
 
   cp -f "$AUTHORS" "$theme_out_dir"

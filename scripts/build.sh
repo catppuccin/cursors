@@ -48,7 +48,7 @@ for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 	BASENAME=${BASENAME%.*}
 	genPixmaps="file-open:${RAWSVG};"
 
-	echo -ne "    $BASENAME...\\r"
+	#echo -ne "    $BASENAME...\\r"
 
 	for scale in $SCALES; do
 		DIR="$BUILD_DIR/x${scale}"
@@ -60,7 +60,7 @@ for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 		inkscape --shell <<<${genPixmaps} &>/dev/null
 	fi
 
-	echo "    $BASENAME... DONE"
+	#echo "    $BASENAME... DONE"
 done
 echo "Generating pixmaps... DONE"
 
