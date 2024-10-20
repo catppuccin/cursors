@@ -8,6 +8,8 @@
   hyprcursor,
   zip,
   catppuccin-whiskers,
+  python3,
+  python3Packages,
 }:
 stdenvNoCC.mkDerivation {
   name = "catppuccin-cursors";
@@ -16,6 +18,7 @@ stdenvNoCC.mkDerivation {
     fileset = lib.fileset.intersection (lib.fileset.fromSource (lib.sources.cleanSource ./.)) (
       lib.fileset.unions [
         ./src
+        ./scripts
         ./justfile
         ./build
         ./create_zips
@@ -33,6 +36,8 @@ stdenvNoCC.mkDerivation {
     hyprcursor
     zip
     catppuccin-whiskers
+    python3
+    python3Packages.pyside6
   ];
 
   buildPhase = ''
