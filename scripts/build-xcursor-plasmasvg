@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
 BIN_DIR="$( dirname "${BASH_SOURCE[0]}" )"
@@ -12,20 +13,17 @@ REAL_SIZE=32
 FRAME_TIME=30
 SCALES="50 75 100 125 150 175 200 225 250 275 300"
 
-echo -ne "Making Folders... \\r"
+# Make folders
 for scale in $SCALES; do
 	mkdir -p "$BUILD_DIR/x$scale"
 done
 mkdir -p "$BUILD_DIR/config"
-echo -e "\033[0KMaking Folders... DONE";
 
-echo "Generating pixmaps..."
+# Generate pixmaps
 for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 	BASENAME=${RAWSVG##*/}
 	BASENAME=${BASENAME%.*}
 	genPixmaps="file-open:${RAWSVG};"
-
-	#echo -ne "    $BASENAME...\\r"
 
 	for scale in $SCALES; do
 		DIR="$BUILD_DIR/x${scale}"
@@ -37,19 +35,16 @@ for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 		inkscape --shell <<<${genPixmaps} &>/dev/null
 	fi
 
-	#echo "    $BASENAME... DONE"
 done
-echo "Generating pixmaps... DONE"
 
-echo "Generating cursor theme..."
+# Generate cursor theme
 OUTPUT=$3
 rm -rf "$OUTPUT"
 mkdir -p "$OUTPUT/cursors"
 mkdir -p "$OUTPUT/cursors_scalable"
 $BIN_DIR/generate-xcursor-plasmasvg ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
-echo "Generating cursor theme... DONE"
 
-echo -ne "Generating shortcuts...\\r"
+# Generate shortcuts
 while read ALIAS ; do
 	FROM=${ALIAS% *}
 	TO=${ALIAS#* }
@@ -71,6 +66,3 @@ while read ALIAS ; do
 
 	ln -s "$TO" "$OUTPUT/cursors_scalable/$FROM"
 done < $ALIASES
-echo -e "\033[0KGenerating shortcuts... DONE"
-
-echo "COMPLETE!"

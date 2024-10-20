@@ -6,24 +6,6 @@
 
 set -eu
 
-echo -ne "Checking Requirements...\\r"
-if ! command -v python > /dev/null ; then
-	echo -e "\\nFAIL: python must be installed"
-	exit 1
-fi
-
-if ! command -v inkscape > /dev/null ; then
-	echo -e "\\nFAIL: inkscape must be installed"
-	exit 1
-fi
-
-if ! command -v xcursorgen > /dev/null ; then
-	echo -e "\\nFAIL: xcursorgen must be installed"
-	exit 1
-fi
-echo -e "\033[0KChecking Requirements... DONE"
-
-
 build_svgs() {
   local src_dir="$1"
 
@@ -121,8 +103,6 @@ for accent in $ACCENTS; do
   theme_src_dir="$SVGS_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
-
-  echo "Generating $FLAVOR - $accent"
 
   scripts/build-xcursor-plasmasvg "$theme_src_dir" "$theme_png_dir" "$theme_out_dir"
 
