@@ -13,28 +13,6 @@ REAL_SIZE=32
 FRAME_TIME=30
 SCALES="50 75 100 125 150 175 200 225 250 275 300"
 
-echo -ne "Checking Requirements...\\r"
-if [[ ! -d "${RAWSVG_DIR}" ]]; then
-	echo -e "\\nFAIL: '${RAWSVG_DIR}' missing in /src"
-	exit 1
-fi
-
-if [[ ! -f "${INDEX}" ]]; then
-	echo -e "\\nFAIL: '${INDEX}' missing in /src"
-	exit 1
-fi
-
-if ! command -v inkscape > /dev/null ; then
-	echo -e "\\nFAIL: inkscape must be installed"
-	exit 1
-fi
-
-if ! command -v xcursorgen > /dev/null ; then
-	echo -e "\\nFAIL: xcursorgen must be installed"
-	exit 1
-fi
-echo -e "\033[0KChecking Requirements... DONE"
-
 echo -ne "Making Folders... \\r"
 for scale in $SCALES; do
 	mkdir -p "$BUILD_DIR/x$scale"

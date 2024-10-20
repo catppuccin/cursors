@@ -6,10 +6,22 @@
 
 set -eu
 
+echo -ne "Checking Requirements...\\r"
 if ! command -v python > /dev/null ; then
 	echo -e "\\nFAIL: python must be installed"
 	exit 1
 fi
+
+if ! command -v inkscape > /dev/null ; then
+	echo -e "\\nFAIL: inkscape must be installed"
+	exit 1
+fi
+
+if ! command -v xcursorgen > /dev/null ; then
+	echo -e "\\nFAIL: xcursorgen must be installed"
+	exit 1
+fi
+echo -e "\033[0KChecking Requirements... DONE"
 
 
 build_svgs() {
