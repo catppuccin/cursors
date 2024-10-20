@@ -94,6 +94,8 @@ pkgs.catppuccin-cursors.mochaMauve
 
 ### Requirements
 
+- [python3](https://www.python.org/downloads/) to execute scripts in the
+codebase.
 - [whiskers](https://github.com/catppuccin/whiskers) to generate the
 cursor SVGs.
 - [xcursorgen](https://wiki.archlinux.org/title/Xcursorgen) to generate the
