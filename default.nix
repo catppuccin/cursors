@@ -21,7 +21,6 @@ stdenvNoCC.mkDerivation {
         ./scripts
         ./justfile
         ./build
-        ./create_zips
         ./AUTHORS
         ./LICENSE
       ]

@@ -13,7 +13,7 @@ clean_hl:
 
 # Zip all directories inside of "./dist"
 zip:
-  ./create_zips
+  ./scripts/create_zips
 
 # Generate a single flavor with accents, defaults to all accents
 build f a=accents:

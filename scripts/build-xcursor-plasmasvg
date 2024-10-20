@@ -5,7 +5,6 @@ BIN_DIR="$( dirname "${BASH_SOURCE[0]}" )"
 SRC_DIR="src"
 BUILD_DIR="$2"
 RAWSVG_DIR="$1"
-INDEX="$1/index.theme"
 ALIASES="$SRC_DIR/cursorList"
 
 NOMINAL_SIZE=24
@@ -47,7 +46,7 @@ OUTPUT=$3
 rm -rf "$OUTPUT"
 mkdir -p "$OUTPUT/cursors"
 mkdir -p "$OUTPUT/cursors_scalable"
-$BIN_DIR/generate_cursors ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
+$BIN_DIR/generate-xcursor-plasmasvg ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
 echo "Generating cursor theme... DONE"
 
 echo -ne "Generating shortcuts...\\r"
@@ -73,11 +72,5 @@ while read ALIAS ; do
 	ln -s "$TO" "$OUTPUT/cursors_scalable/$FROM"
 done < $ALIASES
 echo -e "\033[0KGenerating shortcuts... DONE"
-
-echo -ne "Copying Theme Index...\\r"
-	if ! [[ -e "$OUTPUT/$INDEX" ]]; then
-		cp $INDEX "$OUTPUT/index.theme"
-	fi
-echo -e "\033[0KCopying Theme Index... DONE"
 
 echo "COMPLETE!"

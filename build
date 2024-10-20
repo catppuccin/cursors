@@ -78,7 +78,6 @@ OUT_DIR="$SCRIPT_DIR/dist"
 PNG_DIR="$SCRIPT_DIR/pngs"
 SVGS_DIR="$SCRIPT_DIR/svgs"
 HL_DIR="$SCRIPT_DIR/hl"
-CONFIG_DIR="$SRC_DIR/config"
 
 AUTHORS="$SCRIPT_DIR/AUTHORS"
 LICENSE="$SCRIPT_DIR/LICENSE"
@@ -116,21 +115,21 @@ echo "[INFO] - Generating SVGs..."
 build_svgs $SRC_DIR $FLAVOR
 echo "[INFO] - Generating SVGs complete."
 
-echo "[INFO] - Converting to x11cursor & creating aliases..."
+echo "[INFO] - Converting to xcursor & creating plasma svg cursors..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
   theme_src_dir="$SVGS_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
-  theme_png_dir="$PNG_DIR/$theme_name"
 
   echo "Generating $FLAVOR - $accent"
 
-  scripts/build.sh $theme_src_dir $PNG_DIR/$theme_name $OUT_DIR/$theme_name
+  scripts/build-xcursor-plasmasvg $theme_src_dir $PNG_DIR/$theme_name $OUT_DIR/$theme_name
 
   cp -f "$AUTHORS" "$theme_out_dir"
   cp -f "$LICENSE" "$theme_out_dir"
+  cp -f "$theme_src_dir/index.theme" "$theme_out_dir"
 done
-echo "[INFO] - Converting to x11cursor & creating aliases complete"
+echo "[INFO] - Converting to xcursor & creating plasma svg cursors complete"
 
 if [[ $HYPRCURSOR == 1 ]]; then
   echo "[INFO] - Generating hyprcursor theme..."
