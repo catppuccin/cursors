@@ -120,10 +120,11 @@ for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
   theme_src_dir="$SVGS_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
+  theme_png_dir="$PNG_DIR/$theme_name"
 
   echo "Generating $FLAVOR - $accent"
 
-  scripts/build-xcursor-plasmasvg $theme_src_dir $PNG_DIR/$theme_name $OUT_DIR/$theme_name
+  scripts/build-xcursor-plasmasvg "$theme_src_dir" "$theme_png_dir" "$theme_out_dir"
 
   cp -f "$AUTHORS" "$theme_out_dir"
   cp -f "$LICENSE" "$theme_out_dir"
