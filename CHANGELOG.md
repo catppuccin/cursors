@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.0](https://github.com/catppuccin/cursors/compare/v0.4.0...v1.0.0) (2024-10-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* generate all sizes of cursors from 16px -> 96px
+
+### Features
+
+* use breeze scripts to build xcursors & plasma scalable SVGs ([3c9b12e](https://github.com/catppuccin/cursors/commit/3c9b12e9f209689aba221053d8e5d9f6bfa26872))
+
+
+### Bug Fixes
+
+* generate all sizes of cursors from 16px -&gt; 96px ([3c9b12e](https://github.com/catppuccin/cursors/commit/3c9b12e9f209689aba221053d8e5d9f6bfa26872))
+
+
+### Build system & distribution
+
+* generate SVGs at runtime with catppuccin/whiskers ([56d43e4](https://github.com/catppuccin/cursors/commit/56d43e48faadbda5d3d2429a720a9b34d81f8175))
+
 ## [0.4.0](https://github.com/catppuccin/cursors/compare/v0.3.1...v0.4.0) (2024-10-14)
 
 
