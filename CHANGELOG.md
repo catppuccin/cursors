@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.1](https://github.com/catppuccin/cursors/compare/v1.0.0...v1.0.1) (2024-10-25)
+
+
+### Bug Fixes
+
+* pointer & corner hotspots ([#47](https://github.com/catppuccin/cursors/issues/47)) ([5a5a4a9](https://github.com/catppuccin/cursors/commit/5a5a4a9d5d3159ff51170e2107732f77aff12607))
+
+
+### Build system & distribution
+
+* maintain symlinks in built zips ([#51](https://github.com/catppuccin/cursors/issues/51)) ([571d2b6](https://github.com/catppuccin/cursors/commit/571d2b6321b47ad3f0646399d77a896d3f990a02))
+
 ## [1.0.0](https://github.com/catppuccin/cursors/compare/v0.4.0...v1.0.0) (2024-10-20)
 
 
