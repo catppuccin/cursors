@@ -28,7 +28,7 @@ whiskers:
     <path d="M26 26V6H6a20 20 0 0 1 20 20" style="opacity:1;fill:#{{ inner.hex }};fill-opacity:1;stroke:none;stroke-width:1.35400641;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
     <path
     id="hotspot"
-    d="m 6,25 h 1 v 1 H 6 Z"
+    d="m 26,6 h 1 v 1 h -1 z"
     display="none"
     fill="#333333"
     stroke-width="1.18965" />
