@@ -14,7 +14,7 @@ cd $OUT_DIR
 for dir in */; do
   [ -e "$dir/index.theme" ] || continue
   theme_name="$(basename "$dir")"
-  zip -r "../releases/$theme_name" "$theme_name"
+  zip -ry "../releases/$theme_name" "$theme_name"
 done
 cd ..
 
