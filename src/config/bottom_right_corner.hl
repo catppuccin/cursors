@@ -1,4 +1,0 @@
-resize_algorithm = bilinear
-hotspot_x = 0.78125
-hotspot_y = 0.78125
-define_size = 64, bottom_right_corner.svg

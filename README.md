@@ -101,8 +101,6 @@ cursor SVGs.
 - [xcursorgen](https://wiki.archlinux.org/title/Xcursorgen) to generate the
   cursors.
 - [inkscape](https://wiki.inkscape.org/wiki/Inkscape) to convert SVGs to PNGs.
-- **(Optional)** [hyprcursor](https://github.com/hyprwm/hyprcursor) to include
-  hyprcursor variants.
 - **(Optional)** [just](https://github.com/casey/just) to easily run development
   commands.
 
@@ -120,9 +118,7 @@ cursor SVGs.
 
    ```bash
    just all # Build all flavor-accent variants.
-   just all_with_hyprcursor # Build all flavor-accent variants with hyprcursor support
    just build mocha # To build all variants under one single flavor.
-   just build_with_hyprcursor mocha # To build all variants under one single flavor with hyprcursor support
    just build mocha blue # To build only the blue variant under mocha.
    just build mocha 'blue mauve peach' # To build only the blue, mauve, and peach variants under mocha.
    ```

@@ -4,6 +4,7 @@ set -euo pipefail
 
 BIN_DIR="$( dirname "${BASH_SOURCE[0]}" )"
 SRC_DIR="src"
+HL_DIR="$3"
 BUILD_DIR="$2"
 RAWSVG_DIR="$1"
 ALIASES="$SRC_DIR/cursorList"
@@ -39,11 +40,12 @@ done
 inkscape --shell <<<${genPixmaps} &>/dev/null
 
 # Generate cursor theme
-OUTPUT=$3
+OUTPUT=$4
 rm -rf "$OUTPUT"
 mkdir -p "$OUTPUT/cursors"
 mkdir -p "$OUTPUT/cursors_scalable"
-$BIN_DIR/generate-xcursor-plasmasvg ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
+mkdir -p "$HL_DIR"
+$BIN_DIR/generate-metadata ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" "$HL_DIR" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
 
 # Generate shortcuts
 while read ALIAS ; do
@@ -67,3 +69,27 @@ while read ALIAS ; do
 
 	ln -s "$TO" "$OUTPUT/cursors_scalable/$FROM"
 done < $ALIASES
+
+while read ALIAS ; do
+	FROM=${ALIAS% *}
+	TO=${ALIAS#* }
+
+	if [[ -e "$HL_DIR/$FROM" ]]; then
+		continue
+	fi
+
+	if [ -f "$HL_DIR/$TO/meta.hl" ]; then # need to ensure $TO is not a mapping itself
+    echo -ne "\ndefine_override = $FROM" >> $HL_DIR/$TO/meta.hl;
+  else
+    grep=$(grep -m 1 "^$TO " $ALIASES)
+    TO=${grep#* }
+    echo -ne "\ndefine_override = $FROM" >> $HL_DIR/$TO/meta.hl
+  fi
+done < $ALIASES
+
+#zip up hyprcursor
+mkdir -p "$OUTPUT/hyprcursors"
+for dir in $HL_DIR/*; do
+  dir_name=$(basename $dir)
+  zip -qr "$OUTPUT/hyprcursors/$dir_name.hlc" -j "$dir/"
+done

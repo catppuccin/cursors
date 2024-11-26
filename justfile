@@ -7,9 +7,8 @@ accents := "blue dark flamingo green lavender light maroon mauve peach pink red 
 clean:
   rm -rf pngs/ hl/ dist/ releases/ svgs/
 
-# Remove all hyprcursor related files
-clean_hl:
-  rm -rf hl/
+# Remove all hyprcursor related files // deprecated
+clean_hl: clean
 
 # Zip all directories inside of "./dist"
 zip:
@@ -26,6 +25,5 @@ build_with_hyprcursor f a=accents: clean_hl
 # Generate all flavors with their accents
 all: clean (build "latte") (build "frappe") (build "macchiato") (build "mocha")
 
-# Generate all flavors with their accents with hyprcursor support
-all_with_hyprcursor: clean (build_with_hyprcursor "latte") (build_with_hyprcursor "frappe") (build_with_hyprcursor "macchiato") (build_with_hyprcursor "mocha")
-
+# Generate all flavors with their accents with hyprcursor support // deprecated
+all_with_hyprcursor: all

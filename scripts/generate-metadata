@@ -15,17 +15,18 @@ from PySide6.QtSvg import QSvgRenderer
 # from potential off-by-one errors when the cursor is scaled.
 HOTSPOT_DISPLACE = 1
 
-if len(sys.argv) <= 7:
-    print("Usage: " + sys.argv[0] + " <svg cursor dir> <pixmap dir> <xcursor output dir> <svg cursor output dir> <base size> <animation frame time> <scales>")
+if len(sys.argv) <= 8:
+    print("Usage: " + sys.argv[0] + " <svg cursor dir> <pixmap dir> <xcursor output dir> <svg cursor output dir> <hyprcursor output dir> <base size> <animation frame time> <scales>")
     sys.exit(1)
 
 svg_dir = Path(sys.argv[1])
 pixmap_dir = Path(sys.argv[2])
 xcursor_output_dir = Path(sys.argv[3])
 svg_cursor_output_dir = Path(sys.argv[4])
-nominal_size = int(sys.argv[5])
-delay = int(sys.argv[6])
-scales = [int(i) for i in sys.argv[7:]]
+hyprcursor_output_dir = Path(sys.argv[5])
+nominal_size = int(sys.argv[6])
+delay = int(sys.argv[7])
+scales = [int(i) for i in sys.argv[8:]]
 
 svg_files = list(svg_dir.glob("*.svg"))
 svg_files.sort()
@@ -94,3 +95,23 @@ for svg_file in svg_files:
                     "delay": delay
                 })
             json.dump(l, metadata)
+    # Generate hypr cursor
+    output_dir = hyprcursor_output_dir / basename
+    output_dir.mkdir(parents=True, exist_ok=True)
+    hotspot_x = round(hotspot.x() / nominal_size, 4) # convert to hyprcursor's hotspot format
+    hotspot_y = round(hotspot.y() / nominal_size, 4)
+    with open(output_dir / "meta.hl", "w") as meta_file:
+        meta_data = f"""resize_algorithm = none
+hotspot_x = {hotspot_x}
+hotspot_y = {hotspot_y}"""
+        if len(frames) == 0:
+            filename = svg_file.name
+            shutil.copyfile(svg_file, output_dir / filename)
+            meta_data += f"\ndefine_size = 0, {filename}"
+            meta_file.write(meta_data)
+        else:
+            for i in frames:
+                filename = i.name
+                shutil.copyfile(i, output_dir / filename)
+                meta_data += f"\ndefine_size = 0, {filename}, {delay}"
+            meta_file.write(meta_data)

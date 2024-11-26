@@ -1,4 +1,0 @@
-resize_algorithm = bilinear
-hotspot_x = 0.0625
-hotspot_y = 0.0625
-define_size = 64, copy.svg
