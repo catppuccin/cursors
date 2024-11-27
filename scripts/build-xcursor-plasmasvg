@@ -20,22 +20,23 @@ done
 mkdir -p "$BUILD_DIR/config"
 
 # Generate pixmaps
+genPixmaps=""
 for RAWSVG in ${RAWSVG_DIR}/*.svg; do
 	BASENAME=${RAWSVG##*/}
 	BASENAME=${BASENAME%.*}
-	genPixmaps="file-open:${RAWSVG};"
+	genPixmaps+=" file-open:${RAWSVG};"
 
 	for scale in $SCALES; do
 		DIR="$BUILD_DIR/x${scale}"
 		if [[ "${DIR}/${BASENAME}.png" -ot ${RAWSVG} ]]; then
-			genPixmaps="${genPixmaps} export-width:$((${REAL_SIZE}*scale/100)); export-height:$((${REAL_SIZE}*scale/100)); export-filename:${DIR}/${BASENAME}.png; export-do;"
+			genPixmaps+=" export-width:$((${REAL_SIZE}*scale/100)); export-height:$((${REAL_SIZE}*scale/100)); export-filename:${DIR}/${BASENAME}.png; export-do;"
 		fi
 	done
-	if [ "$genPixmaps" != "file-open:${RAWSVG};" ]; then
-		inkscape --shell <<<${genPixmaps} &>/dev/null
-	fi
+	genPixmaps+=" file-close;"
 
 done
+
+inkscape --shell <<<${genPixmaps} &>/dev/null
 
 # Generate cursor theme
 OUTPUT=$3
