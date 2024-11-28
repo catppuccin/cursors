@@ -45,7 +45,7 @@ rm -rf "$OUTPUT"
 mkdir -p "$OUTPUT/cursors"
 mkdir -p "$OUTPUT/cursors_scalable"
 mkdir -p "$HL_DIR"
-$BIN_DIR/generate-metadata ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" "$HL_DIR" ${NOMINAL_SIZE} ${FRAME_TIME} ${SCALES}
+$BIN_DIR/generate-metadata ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" "$HL_DIR" ${NOMINAL_SIZE} ${REAL_SIZE} ${FRAME_TIME} ${SCALES}
 
 # Generate shortcuts
 while read ALIAS ; do

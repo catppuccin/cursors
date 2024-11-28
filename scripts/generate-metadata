@@ -15,8 +15,8 @@ from PySide6.QtSvg import QSvgRenderer
 # from potential off-by-one errors when the cursor is scaled.
 HOTSPOT_DISPLACE = 1
 
-if len(sys.argv) <= 8:
-    print("Usage: " + sys.argv[0] + " <svg cursor dir> <pixmap dir> <xcursor output dir> <svg cursor output dir> <hyprcursor output dir> <base size> <animation frame time> <scales>")
+if len(sys.argv) <= 9:
+    print("Usage: " + sys.argv[0] + " <svg cursor dir> <pixmap dir> <xcursor output dir> <svg cursor output dir> <hyprcursor output dir> <base size> <real size> <animation frame time> <scales>")
     sys.exit(1)
 
 svg_dir = Path(sys.argv[1])
@@ -25,8 +25,9 @@ xcursor_output_dir = Path(sys.argv[3])
 svg_cursor_output_dir = Path(sys.argv[4])
 hyprcursor_output_dir = Path(sys.argv[5])
 nominal_size = int(sys.argv[6])
-delay = int(sys.argv[7])
-scales = [int(i) for i in sys.argv[8:]]
+real_size = int(sys.argv[7])
+delay = int(sys.argv[8])
+scales = [int(i) for i in sys.argv[9:]]
 
 svg_files = list(svg_dir.glob("*.svg"))
 svg_files.sort()
@@ -98,8 +99,10 @@ for svg_file in svg_files:
     # Generate hypr cursor
     output_dir = hyprcursor_output_dir / basename
     output_dir.mkdir(parents=True, exist_ok=True)
-    hotspot_x = round(hotspot.x() / nominal_size, 4) # convert to hyprcursor's hotspot format
-    hotspot_y = round(hotspot.y() / nominal_size, 4)
+    # hyprcursor has no concept of nominal size so calculate the hotspot based on real size.
+    # users will have to set their hyprcursor to 1.333... times the size of GTK/XCursor size (https://github.com/catppuccin/cursors/pull/55#issuecomment-2502527484)
+    hotspot_x = round(hotspot.x() / real_size, 4) # convert to hyprcursor's hotspot format
+    hotspot_y = round(hotspot.y() / real_size, 4)
     with open(output_dir / "meta.hl", "w") as meta_file:
         meta_data = f"""resize_algorithm = none
 hotspot_x = {hotspot_x}
