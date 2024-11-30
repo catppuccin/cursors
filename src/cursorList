@@ -18,7 +18,6 @@ e29285e634086352946a0e7090d73106 pointer
 fcf21c00b30f7e3f83fe0dfd12e71cff dnd-move
 arrow default
 alias copy
-all-scroll fleur
 bottom_left_corner size_bdiag
 bottom_right_corner size_fdiag
 cell crosshair
@@ -40,7 +39,7 @@ down-arrow default
 draft pencil
 e-resize size_hor
 ew-resize size_hor
-fleur default
+fleur all-scroll
 forbidden no-drop
 grab openhand
 grabbing dnd-move
