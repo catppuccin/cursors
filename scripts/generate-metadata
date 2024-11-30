@@ -96,6 +96,7 @@ for svg_file in svg_files:
                     "delay": delay
                 })
             json.dump(l, metadata)
+
     # Generate hypr cursor
     output_dir = hyprcursor_output_dir / basename
     output_dir.mkdir(parents=True, exist_ok=True)

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-BIN_DIR="$( dirname "${BASH_SOURCE[0]}" )"
+BIN_DIR="$(dirname "${BASH_SOURCE[0]}")"
 SRC_DIR="src"
 HL_DIR="$3"
 BUILD_DIR="$2"
@@ -16,24 +16,24 @@ SCALES="50 75 100 125 150 175 200 225 250 275 300"
 
 # Make folders
 for scale in $SCALES; do
-	mkdir -p "$BUILD_DIR/x$scale"
+  mkdir -p "$BUILD_DIR/x$scale"
 done
 mkdir -p "$BUILD_DIR/config"
 
 # Generate pixmaps
 genPixmaps=""
 for RAWSVG in ${RAWSVG_DIR}/*.svg; do
-	BASENAME=${RAWSVG##*/}
-	BASENAME=${BASENAME%.*}
-	genPixmaps+="file-open:${RAWSVG};"
+  BASENAME=${RAWSVG##*/}
+  BASENAME=${BASENAME%.*}
+  genPixmaps+="file-open:${RAWSVG};"
 
-	for scale in $SCALES; do
-		DIR="$BUILD_DIR/x${scale}"
-		if [[ "${DIR}/${BASENAME}.png" -ot ${RAWSVG} ]]; then
-			genPixmaps+=" export-width:$((${REAL_SIZE}*scale/100)); export-height:$((${REAL_SIZE}*scale/100)); export-filename:${DIR}/${BASENAME}.png; export-do;"
-		fi
-	done
-	genPixmaps+=" file-close; "
+  for scale in $SCALES; do
+    DIR="$BUILD_DIR/x${scale}"
+    if [[ "${DIR}/${BASENAME}.png" -ot ${RAWSVG} ]]; then
+      genPixmaps+=" export-width:$((${REAL_SIZE} * scale / 100)); export-height:$((${REAL_SIZE} * scale / 100)); export-filename:${DIR}/${BASENAME}.png; export-do;"
+    fi
+  done
+  genPixmaps+=" file-close; "
 
 done
 
@@ -48,44 +48,44 @@ mkdir -p "$HL_DIR"
 $BIN_DIR/generate-metadata ${RAWSVG_DIR} "$BUILD_DIR" "$OUTPUT/cursors" "$OUTPUT/cursors_scalable" "$HL_DIR" ${NOMINAL_SIZE} ${REAL_SIZE} ${FRAME_TIME} ${SCALES}
 
 # Generate shortcuts
-while read ALIAS ; do
-	FROM=${ALIAS% *}
-	TO=${ALIAS#* }
+while read ALIAS; do
+  FROM=${ALIAS% *}
+  TO=${ALIAS#* }
 
-	if [[ -e "$OUTPUT/cursors/$FROM" ]]; then
-		continue
-	fi
+  if [[ -e "$OUTPUT/cursors/$FROM" ]]; then
+    continue
+  fi
 
-	ln -s "$TO" "$OUTPUT/cursors/$FROM"
-done < $ALIASES
+  ln -s "$TO" "$OUTPUT/cursors/$FROM"
+done <$ALIASES
 
-while read ALIAS ; do
-	FROM=${ALIAS% *}
-	TO=${ALIAS#* }
+while read ALIAS; do
+  FROM=${ALIAS% *}
+  TO=${ALIAS#* }
 
-	if [[ -e "$OUTPUT/cursors_scalable/$FROM" ]]; then
-		continue
-	fi
+  if [[ -e "$OUTPUT/cursors_scalable/$FROM" ]]; then
+    continue
+  fi
 
-	ln -s "$TO" "$OUTPUT/cursors_scalable/$FROM"
-done < $ALIASES
+  ln -s "$TO" "$OUTPUT/cursors_scalable/$FROM"
+done <$ALIASES
 
-while read ALIAS ; do
-	FROM=${ALIAS% *}
-	TO=${ALIAS#* }
+while read ALIAS; do
+  FROM=${ALIAS% *}
+  TO=${ALIAS#* }
 
-	if [[ -e "$HL_DIR/$FROM" ]]; then
-		continue
-	fi
+  if [[ -e "$HL_DIR/$FROM" ]]; then
+    continue
+  fi
 
-	if [ -f "$HL_DIR/$TO/meta.hl" ]; then # need to ensure $TO is not a mapping itself
-    echo -ne "\ndefine_override = $FROM" >> $HL_DIR/$TO/meta.hl;
+  if [ -f "$HL_DIR/$TO/meta.hl" ]; then # need to ensure $TO is not a mapping itself
+    echo -ne "\ndefine_override = $FROM" >>$HL_DIR/$TO/meta.hl
   else
     grep=$(grep -m 1 "^$TO " $ALIASES)
     TO=${grep#* }
-    echo -ne "\ndefine_override = $FROM" >> $HL_DIR/$TO/meta.hl
+    echo -ne "\ndefine_override = $FROM" >>$HL_DIR/$TO/meta.hl
   fi
-done < $ALIASES
+done <$ALIASES
 
 #zip up hyprcursor
 mkdir -p "$OUTPUT/hyprcursors"

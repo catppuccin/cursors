@@ -17,4 +17,3 @@ for dir in */; do
   zip -ry "../releases/$theme_name" "$theme_name"
 done
 cd ..
-
