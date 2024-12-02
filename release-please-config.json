@@ -7,7 +7,7 @@
       "draft-pull-request": true,
       "extra-files": [
         { "type": "generic", "path": "README.md" },
-        { "type": "generic", "path": "build" }
+        { "type": "generic", "path": "src/templates/manifest.hl.tera" }
       ]
     }
   },

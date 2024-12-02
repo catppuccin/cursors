@@ -1,0 +1,12 @@
+---
+whiskers:
+  version: 2.5.1
+  matrix:
+  - accent: ["blue", "dark", "flamingo", "green", "lavender", "light", "maroon", "mauve", "peach", "pink", "red", "rosewater", "sapphire", "sky", "teal", "yellow"]
+  - flavor
+  filename: "hl/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/manifest.hl"
+---
+name = Catppuccin {{ flavor.name }} {{ accent | capitalize }}
+description = based on Volantes Cursors
+version = "v1.0.1" # x-release-please-version
+cursors_directory = hyprcursors

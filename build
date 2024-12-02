@@ -65,13 +65,6 @@ for accent in $ACCENTS; do
   cp -f "$AUTHORS" "$theme_out_dir"
   cp -f "$LICENSE" "$theme_out_dir"
   cp -f "$theme_src_dir/index.theme" "$theme_out_dir"
-
-  theme_comment="$(grep Comment "$theme_src_dir"/index.theme)"
-  cat >"$theme_out_dir"/manifest.hl <<-EOM
-name = ${theme_name%-cursors}
-description = ${theme_comment#Comment=}
-version = "v1.0.1" # x-release-please-version
-cursors_directory = hyprcursors
-EOM
+  cp -f "$theme_hl_dir/manifest.hl" "$theme_out_dir"
 done
 echo "[INFO] - Finished building cursor formats; xcursor, hyprcursor, plasmasvg"

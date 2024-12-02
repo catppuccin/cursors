@@ -90,6 +90,8 @@ done <$ALIASES
 #zip up hyprcursor
 mkdir -p "$OUTPUT/hyprcursors"
 for dir in $HL_DIR/*; do
-  dir_name=$(basename $dir)
-  zip -qr "$OUTPUT/hyprcursors/$dir_name.hlc" -j "$dir/"
+  if [ -d "$dir" ]; then
+    dir_name=$(basename "$dir")
+    zip -qr "$OUTPUT/hyprcursors/$dir_name.hlc" -j "$dir/"
+  fi
 done
