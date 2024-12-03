@@ -19,41 +19,6 @@ build_svgs() {
   done
 }
 
-create_hyprcursors() {
-  local src_dir="$1"
-  local out_dir="$2"
-  local hypr_dir="$out_dir/hyprcursors"
-
-  [ -d "$out_dir" ] || mkdir -p "$out_dir"
-  [ -d "$hypr_dir" ] || mkdir -p "$hypr_dir"
-
-  hyprcursor-util -x "$src_dir" -o "$out_dir" >/dev/null
-}
-
-compile_hyprcursors() {
-  local hl_dir="$1"
-  local out_dir="$2"
-  local src_dir="$3"
-  local theme_name="$(basename "$1" | sed 's/extracted_//')"
-
-  [ -d "$hl_dir" ] || return 1
-  [ -d "$out_dir" ] || mkdir -p "$out_dir"
-
-  hyprcursor-util -c "$hl_dir" -o "$out_dir" >/dev/null
-  # For whatever reason, hyprcursor appends "Extracted Theme" to the end so we have to work around it
-  mv "$out_dir/theme_Extracted Theme/hyprcursors" "$out_dir/hyprcursors"
-  rm -rf "$out_dir/theme_Extracted Theme"
-
-  local theme_comment="$(grep Comment "$src_dir"/index.theme)"
-
-  cat >"$out_dir"/manifest.hl <<-EOM
-name = ${theme_name%-cursors}
-description = ${theme_comment#Comment=}
-version = "v1.0.1" # x-release-please-version
-cursors_directory = hyprcursors
-EOM
-}
-
 SCRIPT_DIR="$(dirname "$0")"
 SRC_DIR="$SCRIPT_DIR/src"
 OUT_DIR="$SCRIPT_DIR/dist"
@@ -63,21 +28,16 @@ HL_DIR="$SCRIPT_DIR/hl"
 
 AUTHORS="$SCRIPT_DIR/AUTHORS"
 LICENSE="$SCRIPT_DIR/LICENSE"
-ALIASES="$SRC_DIR/cursorList"
 
 ACCENTS="blue dark flamingo green lavender light maroon mauve peach pink red rosewater sapphire sky teal yellow"
-HYPRCURSOR=0
 
-while getopts "f:a:h" option; do
+while getopts "f:a:" option; do
   case $option in
   f)
     FLAVOR="$OPTARG"
     ;;
   a)
     ACCENTS="$OPTARG"
-    ;;
-  h)
-    HYPRCURSOR=1
     ;;
   \?)
     echo "Invalid option: -$OPTARG"
@@ -87,41 +47,24 @@ while getopts "f:a:h" option; do
 done
 echo "[INFO] - Flavor: '$FLAVOR'"
 echo "[INFO] - Accent(s): '$ACCENTS'"
-if [ $HYPRCURSOR -eq 1 ]; then
-  echo "[INFO] - Building with hyprcursor: TRUE"
-else
-  echo "[INFO] - Building with hyprcursor: FALSE"
-fi
 
 echo "[INFO] - Generating SVGs..."
 build_svgs $SRC_DIR $FLAVOR
 echo "[INFO] - Generating SVGs complete."
 
-echo "[INFO] - Converting to xcursor & creating plasma svg cursors..."
+echo "[INFO] - Building cursor formats; xcursor, hyprcursor, plasmasvg..."
 for accent in $ACCENTS; do
   theme_name="catppuccin-$FLAVOR-$accent-cursors"
   theme_src_dir="$SVGS_DIR/$theme_name"
   theme_out_dir="$OUT_DIR/$theme_name"
   theme_png_dir="$PNG_DIR/$theme_name"
+  theme_hl_dir="$HL_DIR/$theme_name"
 
-  scripts/build-xcursor-plasmasvg "$theme_src_dir" "$theme_png_dir" "$theme_out_dir"
+  scripts/build-cursors "$theme_src_dir" "$theme_png_dir" "$theme_hl_dir" "$theme_out_dir"
 
   cp -f "$AUTHORS" "$theme_out_dir"
   cp -f "$LICENSE" "$theme_out_dir"
   cp -f "$theme_src_dir/index.theme" "$theme_out_dir"
+  cp -f "$theme_hl_dir/manifest.hl" "$theme_out_dir"
 done
-echo "[INFO] - Converting to xcursor & creating plasma svg cursors complete"
-
-if [[ $HYPRCURSOR == 1 ]]; then
-  echo "[INFO] - Generating hyprcursor theme..."
-  for accent in $ACCENTS; do
-    theme_name="catppuccin-$FLAVOR-$accent-cursors"
-    theme_src_dir="$OUT_DIR/$theme_name"
-    theme_hl_dir="$HL_DIR/extracted_$theme_name"
-    theme_out_dir="$OUT_DIR/$theme_name"
-
-    create_hyprcursors "$theme_src_dir" "$HL_DIR" "$theme_name"
-    compile_hyprcursors "$theme_hl_dir" "$theme_out_dir" "$theme_src_dir"
-  done
-  echo "[INFO] - Generating hyprcursor theme complete"
-fi
+echo "[INFO] - Finished building cursor formats; xcursor, hyprcursor, plasmasvg"

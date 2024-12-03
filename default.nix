@@ -4,8 +4,6 @@
   inkscape,
   just,
   xcursorgen,
-  xcur2png,
-  hyprcursor,
   zip,
   catppuccin-whiskers,
   python3,
@@ -30,9 +28,7 @@ stdenvNoCC.mkDerivation {
   nativeBuildInputs = [
     just
     xcursorgen
-    xcur2png
     inkscape
-    hyprcursor
     zip
     catppuccin-whiskers
     python3
@@ -43,7 +39,7 @@ stdenvNoCC.mkDerivation {
     runHook preBuild
 
     patchShebangs .
-    just all_with_hyprcursor
+    just all
     just zip
 
     runHook postBuild
