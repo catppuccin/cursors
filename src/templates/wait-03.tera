@@ -6,11 +6,11 @@ whiskers:
     - flavor
   filename: "svgs/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/wait-03.svg"
 ---
-{%- if accent == 'dark' %}
+{%- if (flavor.light and accent == 'light') or (flavor.dark and accent == 'dark') %}
   {%- set inner = flavor.colors["base"] -%}
   {%- set border = flavor.colors["text"] -%}
   {%- set special = flavor.colors["lavender"] -%}
-{% elif accent == 'light' %}
+{% elif (flavor.dark and accent == 'light') or (flavor.light and accent == 'dark') %}
   {%- set inner = flavor.colors["text"] -%}
   {%- set border = flavor.colors["base"] -%}
   {%- set special = border -%}
