@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.0.2](https://github.com/catppuccin/cursors/compare/v1.0.1...v1.0.2) (2024-12-03)
+
+
+### Bug Fixes
+
+* alias svg-&gt;png generation failing ([#57](https://github.com/catppuccin/cursors/issues/57)) ([42d57f7](https://github.com/catppuccin/cursors/commit/42d57f790c0bac1c9948063fb8b548a67adfe2af))
+* build hyprcursor with svgs (again) ([#55](https://github.com/catppuccin/cursors/issues/55)) ([fc88cfb](https://github.com/catppuccin/cursors/commit/fc88cfb1f01d8dc19849d4ccb331e1ade704afa4))
+* latte dark/light being inverted ([#60](https://github.com/catppuccin/cursors/issues/60)) ([652fa31](https://github.com/catppuccin/cursors/commit/652fa31e8ef9fcf4c026a41751ceb8ce3977c366))
+
+
+### Build system & distribution
+
+* batch svgs for inkscape (again) ([#54](https://github.com/catppuccin/cursors/issues/54)) ([cec18c8](https://github.com/catppuccin/cursors/commit/cec18c83ceb51e6aa184af4a666d1e05b1aaf5f8))
+* **svgs:** link `fleur` to `all-scroll` ([#58](https://github.com/catppuccin/cursors/issues/58)) ([f3c116b](https://github.com/catppuccin/cursors/commit/f3c116b1fc6a04a25fd22f18746e0de7451b4a3e))
+
 ## [1.0.1](https://github.com/catppuccin/cursors/compare/v1.0.0...v1.0.1) (2024-10-25)
 
 
