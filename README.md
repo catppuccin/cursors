@@ -11,26 +11,26 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/cursors/main/assets/cat-cursors.png"/>
+  <img src="assets/preview.webp"/>
 </p>
 
 ## Previews
 
 <details>
 <summary>🌻 Latte</summary>
-  <img src="https://raw.githubusercontent.com/catppuccin/cursors/main/assets/cursors-latte.png"/>
+  <img src="assets/latte.webp"/>
 </details>
 <details>
 <summary>🪴 Frappé</summary>
-  <img src="https://raw.githubusercontent.com/catppuccin/cursors/main/assets/cursors-frappe.png"/>
+  <img src="assets/frappe.webp"/>
 </details>
 <details>
 <summary>🌺 Macchiato</summary>
-  <img src="https://raw.githubusercontent.com/catppuccin/cursors/main/assets/cursors-macchiato.png"/>
+  <img src="assets/macchiato.webp"/>
 </details>
 <details>
 <summary>🌿 Mocha</summary>
-  <img src="https://raw.githubusercontent.com/catppuccin/cursors/main/assets/cursors-mocha.png"/>
+  <img src="assets/mocha.webp"/>
 </details>
 
 ## Acknowledgement
