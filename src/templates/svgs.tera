@@ -1,0 +1,31 @@
+---
+whiskers:
+  version: 2.5.1
+  matrix:
+    - file: ['alias', 'all-scroll', 'bottom_left_corner', 'bottom_right_corner', 'bottom_side', 'cell', 'center_ptr', 'color-picker','col-resize', 'context-menu',
+    'copy', 'crosshair', 'default', 'dnd-move', 'dnd-no-drop', 'down-arrow', 'draft', 'help','left-arrow', 'left_side', 'no-drop', 'not-allowed', 'openhand',
+    'pencil', 'pirate', 'pointer', 'progress-01', 'progress-02','progress-03', 'progress-04', 'progress-05', 'progress-06', 'progress-07', 'progress-08',
+    'progress-09', 'progress-10', 'progress-11','progress-12', 'right-arrow', 'right_ptr', 'right_side', 'row-resize', 'size_bdiag', 'size_fdiag', 'size_hor',
+    'size_ver', 'text', 'top_left_corner', 'top_right_corner', 'top_side', 'up-arrow', 'vertical-text', 'wait-01', 'wait-02','wait-03', 'wait-04', 'wait-05',
+    'wait-06', 'wait-07', 'wait-08', 'wait-09', 'wait-10', 'wait-11', 'wait-12','wayland-cursor', 'x-cursor', 'zoom-in', 'zoom-out']
+    - accent: ["blue", "dark", "flamingo", "green", "lavender", "light", "maroon", "mauve", "peach", "pink", "red", "rosewater", "sapphire", "sky", "teal", "yellow"]
+    - flavor
+  filename: "svgs/catppuccin-{{flavor.identifier}}-{{accent}}-cursors/{{file}}.svg"
+special_map: {"alias": "mauve", "context-menu": "peach", "copy": "green", "dnd-no-drop": "red", "help": "blue", "no-drop": "red", "not-allowed": "red", "pirate": "red",
+"progress-01": "lavender", "progress-02": "lavender", "progress-03": "lavender", "progress-04": "lavender", "progress-05": "lavender", "progress-06": "lavender", "progress-07":
+"lavender", "progress-08": "lavender", "progress-09": "lavender", "progress-10": "lavender", "progress-11": "lavender", "progress-12": "lavender", "wait-01": "lavender",
+"wait-02": "lavender", "wait-03": "lavender", "wait-04": "lavender", "wait-05": "lavender", "wait-06": "lavender", "wait-07": "lavender", "wait-08": "lavender", "wait-09":
+"lavender", "wait-10": "lavender", "wait-11": "lavender", "wait-12": "lavender", "wayland-cursor": "peach", "x-cursor": "maroon"}
+---
+{% set border = flavor.colors["base"] %}
+{%- set special = border %}
+
+{%- if (flavor.light and accent == 'light') or (flavor.dark and accent == 'dark') %} {#- generate the 'custom' accent with special #}
+  {%- set inner = flavor.colors["base"] %}
+  {%- set border = flavor.colors["text"] %}
+  {%- if special_map[file] -%} {% set special = flavor.colors[special_map[file]] %} {%- endif %}
+{%- elif accent == 'dark' or accent == 'light' -%} {% set inner = flavor.colors["text"] %} {#- generate the other 'custom' accent without special #}
+{% else -%} {% set inner = flavor.colors[accent] %}
+{% endif %}
+
+{{- read_file(path="../svgs/" ~ file ~ ".svg") | replace(from="FF0000", to=inner.hex) | replace(from="00FF00", to=border.hex) | replace(from="0000FF", to=special.hex) -}}
