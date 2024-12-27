@@ -1,0 +1,142 @@
+while getopts "aticse" option; do
+  case $option in
+  a)
+    GEN_ARRAY=1
+    ;;
+  t)
+    GEN_TEXT=1
+    ;;
+  i)
+    GEN_IMAGE=1
+    ;;
+  c)
+    GEN_CONVERT=1
+    ;;
+  s)
+    DONT_GEN_SVGS=1
+    ;;
+  e)
+    GEN_ARRAY=1
+    GEN_TEXT=1
+    GEN_IMAGE=1
+    GEN_CONVERT=1
+    ;;
+  \?)
+    echo "Invalid option.
+    -a : generate the strip array for each accent/flavour (is a bit insane and takes a while as it shells out to inkscape with no batching :P)
+    -t : adds the text/label to generated arrays
+    -i : combines all accent strips into a single flavour image
+    -c : converts the pngs to webps
+    -e : does everything above
+    -s : stops the generatation of the source svgs"
+    exit 1
+    ;;
+  esac
+done
+
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+cd "$SCRIPT_DIR/.." || exit 1
+
+flavs='mocha macchiato frappe latte'
+for flavour in $flavs; do
+  case $flavour in
+    mocha)
+      text_colour='#cdd6f4' #Text
+      background='#181825' #Mantle
+      ;;
+    macchiato)
+      text_colour='#cad3f5' #Text
+      background='#1e2030' #Mantle
+      ;;
+    frappe)
+      text_colour='#c6d0f5' #Text
+      background='#292c3c' #Mantle
+      ;;
+    latte)
+      text_colour='#4c4f69' #Text
+      background='#e6e9ef' #Mantle
+      ;;
+  esac
+  if [[ $DONT_GEN_SVGS != 1 ]]; then
+    whiskers src/templates/svgs.tera -f $flavour
+  fi
+  if [[ $GEN_ARRAY == 1 ]]; then
+    mkdir -p svgs/$flavour
+    echo $flavour
+    for dir in svgs/catppuccin-$flavour*; do
+      name=$(basename $dir)
+      magick -density 300 -background none \
+        $dir/default.svg \
+        $dir/alias.svg \
+        $dir/context-menu.svg \
+        $dir/copy.svg \
+        $dir/no-drop.svg \
+        $dir/progress-01.svg \
+        $dir/pointer.svg \
+        $dir/dnd-no-drop.svg \
+        $dir/pencil.svg \
+        $dir/all-scroll.svg \
+        $dir/cell.svg \
+        $dir/text.svg \
+        $dir/not-allowed.svg \
+        $dir/wait-01.svg \
+        $dir/bottom_side.svg \
+        $dir/size_hor.svg \
+        $dir/zoom-in.svg \
+        -trim +repage \
+        -splice 20x0 \
+        -gravity center \
+        +append \
+        svgs/$flavour/$name.png \
+        &>/dev/null
+    done
+  fi
+
+  if [[ $GEN_TEXT == 1 ]]; then
+    mkdir -p svgs/$flavour/label/
+    for image in svgs/$flavour/*.png; do
+      accent="${image#*catppuccin-}" # Extract out the accent and capitalize
+      accent="${accent%-cursors.png}"
+      accent="${accent#*-}"
+      Accent="${accent^}"
+
+      magick $image \
+        -background transparent -splice 335x0+0+0 \
+        -font JetBrainsMono-NF-Medium -pointsize 60 -fill $text_colour \
+        -annotate +0+65 "$Accent" \
+        svgs/$flavour/label/$accent.png
+    done
+  fi
+
+  if [[ $GEN_IMAGE == 1 ]]; then
+    dir=svgs/$flavour/label
+    magick \( rosewater.png \
+      $dir/flamingo.png \
+      $dir/pink.png \
+      $dir/mauve.png \
+      $dir/red.png \
+      $dir/maroon.png \
+      $dir/peach.png \
+      $dir/yellow.png \
+      $dir/green.png \
+      $dir/teal.png \
+      $dir/sky.png \
+      $dir/sapphire.png \
+      $dir/blue.png \
+      $dir/lavender.png \
+      $dir/dark.png \
+      $dir/light.png \
+      -background $background -alpha remove \
+      -splice 0x20 \
+      -append \
+      -chop 0x20 \
+      -bordercolor $background -border 60x60 \) \
+      \( -clone 0 -crop 600x1882+487+49 -geometry +487+60 \) -composite \
+      \( -clone 0 -crop 90x1882+1170+49 -geometry +1170+66 \) -composite \
+      svgs/full-$flavour.png
+  fi
+  if [[ $GEN_CONVERT == 1 ]]; then
+    magick svgs/full-$flavour.png -strip -define webp:lossless=true -resize 50% -quality 65 assets/$flavour.webp
+    echo "now just run \`catwalk\` in the assets dir to generate the preview"
+  fi
+done
