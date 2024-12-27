@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/preview.webp"/>
+  <img src="assets/preview.webp" width="800"/>
 </p>
 
 ## Previews
