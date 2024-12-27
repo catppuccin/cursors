@@ -100,14 +100,13 @@ for svg_file in svg_files:
     # Generate hypr cursor
     output_dir = hyprcursor_output_dir / basename
     output_dir.mkdir(parents=True, exist_ok=True)
-    # hyprcursor has no concept of nominal size so calculate the hotspot based on real size.
-    # users will have to set their hyprcursor to 1.333... times the size of GTK/XCursor size (https://github.com/catppuccin/cursors/pull/55#issuecomment-2502527484)
     hotspot_x = round(hotspot.x() / real_size, 4) # convert to hyprcursor's hotspot format
     hotspot_y = round(hotspot.y() / real_size, 4)
     with open(output_dir / "meta.hl", "w") as meta_file:
         meta_data = f"""resize_algorithm = none
 hotspot_x = {hotspot_x}
-hotspot_y = {hotspot_y}"""
+hotspot_y = {hotspot_y}
+nominal_size = {nominal_size / real_size}""" # calculate nominal ratio
         if len(frames) == 0:
             filename = svg_file.name
             shutil.copyfile(svg_file, output_dir / filename)
