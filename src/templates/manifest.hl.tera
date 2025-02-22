@@ -8,5 +8,5 @@ whiskers:
 ---
 name = Catppuccin {{ flavor.name }} {{ accent | capitalize }}
 description = based on Volantes Cursors
-version = "v1.0.2" # x-release-please-version
+version = "v2.0.0" # x-release-please-version
 cursors_directory = hyprcursors

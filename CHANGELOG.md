@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/catppuccin/cursors/compare/v1.0.2...v2.0.0) (2024-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* implement nominal_size metadata for hyprcursor
+
+### Features
+
+* implement nominal_size metadata for hyprcursor ([6649d37](https://github.com/catppuccin/cursors/commit/6649d37f3cd6fbaf814733215f735806cc1c7f2d))
+
 ## [1.0.2](https://github.com/catppuccin/cursors/compare/v1.0.1...v1.0.2) (2024-12-03)
 
 

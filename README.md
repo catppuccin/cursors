@@ -43,7 +43,7 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
 
 <!-- x-release-please-start-version -->
 
-1. Download your preferred flavor and accent from the [latest GitHub release](https://github.com/catppuccin/cursors/releases/tag/v1.0.2).
+1. Download your preferred flavor and accent from the [latest GitHub release](https://github.com/catppuccin/cursors/releases/tag/v2.0.0).
 
 1. Extract the downloaded zip to one of the following locations:
 
@@ -56,7 +56,7 @@ This project is a modification of [Volantes Cursors](https://github.com/varlesh/
 
 ```bash
 cd $HOME/.icons # or `/usr/share/icons`
-curl -LOsS https://github.com/catppuccin/cursors/releases/download/v1.0.2/catppuccin-frappe-blue-cursors.zip
+curl -LOsS https://github.com/catppuccin/cursors/releases/download/v2.0.0/catppuccin-frappe-blue-cursors.zip
 unzip catppuccin-frappe-blue-cursors.zip
 ```
 
