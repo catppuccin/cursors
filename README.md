@@ -67,18 +67,17 @@ unzip catppuccin-frappe-blue-cursors.zip
 Individual flavor packages are available to download with your preferred AUR helper:
 
 ```bash
-yay -S catppuccin-cursors-latte
-yay -S catppuccin-cursors-frappe
-yay -S catppuccin-cursors-macchiato
-yay -S catppuccin-cursors-mocha
+paru -S catppuccin-cursors-latte
+paru -S catppuccin-cursors-frappe
+paru -S catppuccin-cursors-macchiato
+paru -S catppuccin-cursors-mocha
 ```
 
-A `-git` package is also available which builds the cursors from source. This
-package contains all variants of flavor and accent.
-
+You may set the `CTP_CURSOR_COLOR` environment variable to your desired colors before installing to download and install only those:
 ```bash
-yay -S catppuccin-cursors-git
-```
+export CTP_CURSOR_COLOR="mauve dark light"
+```   
+
 
 ### NixOS
 
