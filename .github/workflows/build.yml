@@ -17,22 +17,22 @@ jobs:
         id: vars
         run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: Upload artifacts (Latte)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'catppuccin-latte-cursors-${{ steps.vars.outputs.sha_short }}'
           path: result/catppuccin-latte-*.zip
       - name: Upload artifacts (Frappe)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'catppuccin-frappe-cursors-${{ steps.vars.outputs.sha_short }}'
           path: result/catppuccin-frappe-*.zip
       - name: Upload artifacts (Macchiato)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'catppuccin-macchiato-cursors-${{ steps.vars.outputs.sha_short }}'
           path: result/catppuccin-macchiato-*.zip
       - name: Upload artifacts (Mocha)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: 'catppuccin-mocha-cursors-${{ steps.vars.outputs.sha_short }}'
           path: result/catppuccin-mocha-*.zip
